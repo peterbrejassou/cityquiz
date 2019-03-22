@@ -1,0 +1,55 @@
+import React from 'react';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { appStyle, menuStyle } from '../../styles/styles';
+import MenuItem from './MenuItem';
+import {menuList} from './MenuList';
+
+var imgPath = '../../../assets/img/';
+
+export default class MenuScreen extends React.Component {
+    render() {
+        var items = menuList.map((item) => {
+            return <MenuItem key={item.title} title={item.title} logo={item.logo} screen={item.screen} navigation={this.props.navigation}></MenuItem>
+        });
+
+        return (
+            <View style={appStyle.body}>
+                <View style={[appStyle.padding, appStyle.mainView]}>
+                    <View style={menuStyle.firstSection}>
+                        <TouchableOpacity
+                        onPress={() => { this.props.navigation.goBack() }}>
+                            <Image source={require(imgPath + 'cross.png')} style={menuStyle.cross} />
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={menuStyle.secondSection}>
+                        <Image source={require(imgPath + 'users/john_doe.jpg')} style={menuStyle.imgUser} />
+                        <Text style={[menuStyle.whiteText, { fontSize: 32 }]}>John Doe</Text>
+                        <Text style={[menuStyle.whiteText, menuStyle.idUser]}>@johndoe</Text>
+                    </View>
+
+                    <View style={menuStyle.thirdSection}>
+                       {items}
+                    </View>
+                </View>
+
+                <View style={menuStyle.fourthSection}>
+                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => {this.props.navigation.navigate('Parametres')}}>
+                        <Image
+                            style={menuStyle.bottomLogos}
+                            source={require(imgPath + 'parametres.png')}
+                        />
+                        <Text style={menuStyle.bottomTexts}>Paramètres</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => {this.props.navigation.navigate('Login')}}>
+                        <Image
+                            style={menuStyle.bottomLogos}
+                            source={require(imgPath + 'logout.png')}
+                        />
+                        <Text style={menuStyle.bottomTexts}>Déconnexion</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+    }
+}
