@@ -330,17 +330,14 @@ export const questionStyle = StyleSheet.create({
     
     indiceView: {
         backgroundColor: greenColor,
-        width: 330,
-        height: 180,
+        width: 350,
+        height: 200,
         borderTopRightRadius: 40,
         borderTopLeftRadius: 40,
         zIndex: 2,
-       /*  position: 'absolute',
-        bottom: 10,
-        left: Dimensions.get('window').width/2,
-        transform: [
-            { translateX: -Dimensions.get('window').width/2 },
-        ] */
+        position: 'absolute',
+        bottom: 0,
+        left: 30
     },
 
     indiceTitle:{
@@ -360,12 +357,13 @@ export const questionStyle = StyleSheet.create({
 
     indiceArrowCloseView: {
         alignItems: 'center',
-        marginTop: 30
+        marginTop: 10,
+        marginBottom: 5
     },
 
     indiceArrowClose: {
-        width: 15,
-        height: 30
+        width: 30,
+        height: 30,
     },
 
     indiceScrollView: {

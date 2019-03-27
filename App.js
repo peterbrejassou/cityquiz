@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from 'react-native'
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import LoginScreen from './src/screens/Login/LoginScreen';
 import InscriptionScreen from './src/screens/Inscription/InscriptionScreen';
@@ -8,8 +7,8 @@ import ParametresScreen from './src/screens/Parametres/ParametresScreen';
 import JouerScreen from './src/screens/Jouer/JouerScreen';
 import ProposerLieuScreen from './src/screens/ProposerLieu/ProposerLieuScreen';
 import QuestionScreen from './src/screens/Question/QuestionScreen';
-import CardNiveau from './src/screens/Jouer/CardNiveau';
-import { appStyle } from "./src/styles/styles";
+import GoodAnswerScreen from './src/screens/Question/GoodAnswerScreen';
+import BadAnswerScreen from './src/screens/Question/BadAnswerScreen';
 
 
 const AppNavigator = createStackNavigator(
@@ -32,4 +31,3 @@ const AppContainer = createAppContainer(AppNavigator);
 
 export default () =>
   <AppContainer />
-    
