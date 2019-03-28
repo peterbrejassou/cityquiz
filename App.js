@@ -7,8 +7,6 @@ import ParametresScreen from './src/screens/Parametres/ParametresScreen';
 import JouerScreen from './src/screens/Jouer/JouerScreen';
 import ProposerLieuScreen from './src/screens/ProposerLieu/ProposerLieuScreen';
 import QuestionScreen from './src/screens/Question/QuestionScreen';
-import GoodAnswerScreen from './src/screens/Question/GoodAnswerScreen';
-import BadAnswerScreen from './src/screens/Question/BadAnswerScreen';
 
 
 const AppNavigator = createStackNavigator(

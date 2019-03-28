@@ -331,7 +331,7 @@ export const questionStyle = StyleSheet.create({
     indiceView: {
         backgroundColor: greenColor,
         width: 350,
-        height: 200,
+        height: 150,
         borderTopRightRadius: 40,
         borderTopLeftRadius: 40,
         zIndex: 2,
@@ -352,7 +352,9 @@ export const questionStyle = StyleSheet.create({
         textAlign: 'justify',
         color: 'white',
         marginTop: 10,
-        fontSize: 16
+        fontSize: 16,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
 
     indiceArrowCloseView: {

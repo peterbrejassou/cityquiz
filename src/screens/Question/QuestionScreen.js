@@ -209,8 +209,6 @@ export default class QuestionScreen extends React.Component {
                         <Button onPress={() => { }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                         <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                     </View> 
-                    
-
                 </View>
             )
         }
