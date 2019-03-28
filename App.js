@@ -7,6 +7,9 @@ import ParametresScreen from './src/screens/Parametres/ParametresScreen';
 import JouerScreen from './src/screens/Jouer/JouerScreen';
 import ProposerLieuScreen from './src/screens/ProposerLieu/ProposerLieuScreen';
 import QuestionScreen from './src/screens/Question/QuestionScreen';
+import ProfilScreen from './src/screens/Profil/ProfilScreen';
+import BadgesScreen from './src/screens/Badges/BadgesScreen';
+import ClassementScreen from './src/screens/Classement/ClassementScreen';
 
 
 const AppNavigator = createStackNavigator(
@@ -17,7 +20,10 @@ const AppNavigator = createStackNavigator(
     Parametres: { screen: ParametresScreen },
     Jouer: { screen: JouerScreen },
     ProposerLieu: { screen: ProposerLieuScreen },
-    Question: { screen: QuestionScreen }
+    Question: { screen: QuestionScreen },
+    Profil: { screen: ProfilScreen },
+    Badges: { screen: BadgesScreen },
+    Classement: { screen: ClassementScreen }
   },
   {
     initialRouteName: "Jouer",

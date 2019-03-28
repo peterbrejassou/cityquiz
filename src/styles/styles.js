@@ -221,7 +221,7 @@ export const headerStyle = StyleSheet.create({
 
 export const jouerStyle = StyleSheet.create({
     mainView: {
-        marginTop: 20,
+        marginTop: 20
     }
 });
 
@@ -291,6 +291,7 @@ export const questionStyle = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginTop: 20,
+        textAlign: 'center'
     },
 
     buttonsView: {

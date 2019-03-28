@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Image, Button } from 'react-native-elements';
 import HeaderCoinsQuestion from '../Header/HeaderCoinsQuestion';
 import { appStyle, questionStyle, buttonStyle, finishStyle, winStyle, looseStyle } from '../../styles/styles';
+import { niveauData } from '../../../assets/mocks/niveauData';
 
 
 export default class QuestionScreen extends React.Component {
@@ -27,7 +28,7 @@ export default class QuestionScreen extends React.Component {
     _questionView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
-                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero + 1} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
+                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
                     <Image
@@ -85,7 +86,7 @@ export default class QuestionScreen extends React.Component {
     _goodAnswerView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
-                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero + 1} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
+                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
                     <Image
@@ -117,7 +118,7 @@ export default class QuestionScreen extends React.Component {
     _badAnswerView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
-                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero + 1} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
+                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
                     <Image
@@ -154,9 +155,9 @@ export default class QuestionScreen extends React.Component {
 
         console.log(this.state.questions.length);
 
-        if(this.state.questionEnCours.numero + 1 !== this.state.questions.length){
+        if(this.state.questionEnCours.numero !== this.state.questions.length){
             this.setState({
-                questionEnCours: this.props.navigation.state.params.niveau.questions[this.state.questionEnCours.numero + 1],
+                questionEnCours: this.props.navigation.state.params.niveau.questions[this.state.questionEnCours.numero],
                 viewQuestion: true
             });
         } else{
@@ -182,7 +183,7 @@ export default class QuestionScreen extends React.Component {
                     </View>
                     
                     <View style={finishStyle.thirdView}>
-                        <Button onPress={() => { this.props.navigation.push("Question", { questions: this.state.questions, niveau: this.state.niveauActuel }) }} title="Rejouer" buttonStyle={buttonStyle.connexion} titleStyle={buttonStyle.titleButtonStyle} />
+                        <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.state.niveauActuel }) }} title="Rejouer" buttonStyle={buttonStyle.connexion} titleStyle={buttonStyle.titleButtonStyle} />
                         <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                     </View>                  
                 </View>
@@ -206,12 +207,12 @@ export default class QuestionScreen extends React.Component {
 
                     <View style={finishStyle.thirdView}>
                         <TouchableOpacity
-                        onPress={() => { }}
+                        onPress={() => { alert("Share") }}
                         style={winStyle.shareButton}>
                             <Image source={require("../../../assets/img/share.png")} style={winStyle.shareButtonImg} />
                             <Text style={winStyle.titleShareButton}>Partager le résultat</Text>
                         </TouchableOpacity>
-                        <Button onPress={() => { }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+                        <Button onPress={() => { this.props.navigation.push("Question", { niveau: niveauData[this.state.niveauActuel.id] }) }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                         <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                     </View> 
                 </View>
