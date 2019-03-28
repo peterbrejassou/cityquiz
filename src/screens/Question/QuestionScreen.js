@@ -205,7 +205,12 @@ export default class QuestionScreen extends React.Component {
                     </View>
 
                     <View style={finishStyle.thirdView}>
-                        <Button onPress={() => { }} title="Partager le résultat" buttonStyle={winStyle.shareButton} titleStyle={buttonStyle.titleButtonStyle} />
+                        <TouchableOpacity
+                        onPress={() => { }}
+                        style={winStyle.shareButton}>
+                            <Image source={require("../../../assets/img/share.png")} style={winStyle.shareButtonImg} />
+                            <Text style={winStyle.titleShareButton}>Partager le résultat</Text>
+                        </TouchableOpacity>
                         <Button onPress={() => { }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                         <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                     </View> 

@@ -189,7 +189,7 @@ export const headerStyle = StyleSheet.create({
     },
 
     title: {
-        color: 'white',
+        color: whiteColor,
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -199,7 +199,7 @@ export const headerStyle = StyleSheet.create({
     },
 
     coinsText: {
-        color: 'white'
+        color: whiteColor
     },
 
     coinsImg: {
@@ -236,7 +236,7 @@ export const cardNiveauStyle = StyleSheet.create({
     },
 
     title: {
-        color: 'white',
+        color: whiteColor,
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
@@ -252,7 +252,7 @@ export const cardNiveauStyle = StyleSheet.create({
     },
 
     whiteText: {
-        color: 'white'
+        color: whiteColor
     },
 
     buttonView: {
@@ -261,7 +261,7 @@ export const cardNiveauStyle = StyleSheet.create({
 
     button: {
         backgroundColor: 'transparent',
-        borderColor: 'white',
+        borderColor: whiteColor,
         borderWidth: 1,
         borderRadius: 100,
         width: 180,
@@ -269,7 +269,7 @@ export const cardNiveauStyle = StyleSheet.create({
     },
 
     titleButton: {
-        color: 'white',
+        color: whiteColor,
         fontWeight: 'bold',
     }
 });
@@ -287,7 +287,7 @@ export const questionStyle = StyleSheet.create({
     },
 
     intitule: {
-        color: 'white',
+        color: whiteColor,
         fontSize: 18,
         fontWeight: 'bold',
         marginTop: 20,
@@ -301,14 +301,14 @@ export const questionStyle = StyleSheet.create({
         backgroundColor: 'transparent',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: whiteColor,
         width: 300,
         height: 70,
         margin: 10,
     },
 
     titleButtonAnswer: {
-        color: 'white',
+        color: whiteColor,
         fontSize: 16,
     },
 
@@ -343,14 +343,14 @@ export const questionStyle = StyleSheet.create({
     indiceTitle:{
         textTransform: 'uppercase',
         textAlign: 'center',
-        color: 'white',
+        color: whiteColor,
         marginTop: 10,
         fontSize: 20,
     },
 
     indiceContent: {
         textAlign: 'justify',
-        color: 'white',
+        color: whiteColor,
         marginTop: 10,
         fontSize: 16,
         paddingLeft: 20,
@@ -373,10 +373,10 @@ export const questionStyle = StyleSheet.create({
     },
 
     bonneReponse: {
-        backgroundColor: 'white',
+        backgroundColor: whiteColor,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: whiteColor,
         width: 300,
         height: 70,
         marginTop: 5,
@@ -398,7 +398,7 @@ export const questionStyle = StyleSheet.create({
         backgroundColor: 'transparent',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: whiteColor,
         width: 300,
         height: 70,
         marginTop: 5,
@@ -411,7 +411,7 @@ export const questionStyle = StyleSheet.create({
     },
 
     titleMauvaiseReponse: {
-        color: 'white',
+        color: whiteColor,
         fontSize: 16
     },
 
@@ -420,7 +420,7 @@ export const questionStyle = StyleSheet.create({
     },
 
     explication: {
-        color: 'white', 
+        color: whiteColor, 
         textAlign: 'justify' 
     },
 
@@ -467,7 +467,7 @@ export const finishStyle = StyleSheet.create({
     },
 
     msg: {
-        color: 'white',
+        color: whiteColor,
         textTransform: 'uppercase',
         fontSize: 40,
         marginTop: 20
@@ -500,16 +500,30 @@ export const winStyle = StyleSheet.create({
 
     shareButton: {
         backgroundColor: 'transparent',
-        borderColor: 'white',
+        borderColor: whiteColor,
         borderWidth: 1,
         height: 52,
-        borderRadius: 100
+        borderRadius: 100,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    shareButtonImg: {
+        width: 20,
+        height: 20
+    },
+
+    titleShareButton: {
+        color: whiteColor,
+        marginLeft: 10,
+        fontWeight: 'bold',
     }
 });
 
 export const looseStyle = StyleSheet.create({
     text: {
-        color: 'white',
+        color: whiteColor,
         fontSize: 18
     },
 
