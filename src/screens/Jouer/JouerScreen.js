@@ -8,7 +8,7 @@ import { niveauData } from '../../../assets/mocks/niveauData';
 export default class JouerScreen extends React.Component {
     render() {
         var niveauItems = niveauData.map((item) => {
-            return <CardNiveau key={item.id} nom={item.nom} difficulte={item.difficulte} questions={item.questions} navigation={this.props.navigation} />
+            return <CardNiveau key={item.id} niveau={item} navigation={this.props.navigation} />
         });
 
         return (

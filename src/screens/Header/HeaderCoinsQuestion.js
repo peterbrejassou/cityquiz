@@ -18,7 +18,7 @@ export default class HeaderCoinsQuestion extends React.Component {
                 
                 <View style={headerStyle.textView}>
                     <Text style={headerStyle.title}>{this.props.title}</Text>
-                    <Text style={headerStyle.nbQuestion}>Question {this.props.questionNumber} / 10</Text>
+                    <Text style={headerStyle.nbQuestion}>Question {this.props.questionNumber} / {this.props.nbQuestionsTotal}</Text>
                 </View>
 
                 <View style={headerStyle.coinsView}>

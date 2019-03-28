@@ -2,41 +2,43 @@ import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Image, Button } from 'react-native-elements';
 import HeaderCoinsQuestion from '../Header/HeaderCoinsQuestion';
-import { appStyle, questionStyle } from '../../styles/styles';
+import { appStyle, questionStyle, buttonStyle, finishStyle, winStyle, looseStyle } from '../../styles/styles';
 
 
 export default class QuestionScreen extends React.Component {
-    
+ 
     constructor(props){
         super(props);
         this.state = {
             score: 0,
-            numeroQuestion: 0,
-            questions: this.props.navigation.state.params.questions,
-            questionEnCours: this.props.navigation.state.params.questions[0],
+            valeurQuestion: 20,
+            niveauActuel: this.props.navigation.state.params.niveau,
+            questions: this.props.navigation.state.params.niveau.questions,
+            questionEnCours: this.props.navigation.state.params.niveau.questions[0],
+            reponseDonnee: null,
             indiceDisplayed: false,
             viewQuestion: true,
-            answerIsGood: false,
+            answerIsGood: null,
+            finishView: false
             
         }
     }
-
-
-    _questionView(q){
+    
+    _questionView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
-                <HeaderCoinsQuestion title="Niveau 1" questionNumber={this.state.numeroQuestion + 1} navigation={this.props.navigation} />
+                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero + 1} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
                     <Image
                         style={questionStyle.img}
-                        source={q.image}
+                        source={this.state.questionEnCours.image}
                     />
-                    <Text style={questionStyle.intitule}>{q.intitule}</Text>
+                    <Text style={questionStyle.intitule}>{this.state.questionEnCours.intitule}</Text>
 
                     <View style={questionStyle.buttonsView}>
-                        {q.reponses.map((r, index) =>
-                            <Button key={r} onPress={() => { this._valideReponse(q, index) }} title={r} buttonStyle={questionStyle.buttonAnswer} titleStyle={questionStyle.titleButtonAnswer} />
+                        {this.state.questionEnCours.reponses.map((r, index) =>
+                            <Button key={r} onPress={() => { this._valideReponse(index) }} title={r} buttonStyle={questionStyle.buttonAnswer} titleStyle={questionStyle.titleButtonAnswer} />
                         )}
                     </View>
 
@@ -52,7 +54,7 @@ export default class QuestionScreen extends React.Component {
                     <View style={questionStyle.indiceView}>
                         <Text style={questionStyle.indiceTitle}>Indice</Text>
                         <ScrollView showsVerticalScrollIndicator={false} style={questionStyle.indiceScrollView}>
-                            <Text style={questionStyle.indiceContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a leo massa. Maecenas dapibus metus quis nisi fermentum tempor. Phasellus faucibus, tortor vitae interdum dapibus, nunc odio lobortis sem, at ullamcorper magna ex nec tellus. Aenean congue eleifend tortor vitae interdum. Mauris tincidunt nec sem ac tristique. Fusce libero urna, blandit nec metus quis, semper condimentum justo. Proin et convallis enim, ut iaculis velit. Etiam luctus, nunc sit amet efficitur egestas, orci ex cursus tortor, vel tristique justo felis egestas massa. Aliquam nec tristique sem. Suspendisse commodo egestas posuere. Vivamus condimentum ultrices semper. Ut hendrerit convallis placerat.</Text>
+                            <Text style={questionStyle.indiceContent}>{this.state.questionEnCours.indice}</Text>
                         </ScrollView>
                         <TouchableOpacity
                             onPress={() => { this._displayIndice() }}
@@ -69,49 +71,80 @@ export default class QuestionScreen extends React.Component {
         this.setState({ indiceDisplayed: !this.state.indiceDisplayed });
     }
 
-    _valideReponse(question, index) {
-        this.setState({ viewQuestion: false });
+    _valideReponse(index) {
+        this.setState({ viewQuestion: false, reponseDonnee: index });
 
-        if (index == question.bonneReponse) {
-            this.setState({ score: this.state.score + 20, answerIsGood: true });
+        if (index == this.state.questionEnCours.bonneReponse) {
+            this.setState({ score: this.state.score + this.state.valeurQuestion, answerIsGood: true });
         } else {
             this.setState({ viewQuestion: false, answerIsGood: false });
         }
     }
 
 
-    _goodAnswerView(q){
+    _goodAnswerView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
-                <HeaderCoinsQuestion title="Lvl 1" questionNumber={this.state.numeroQuestion} navigation={this.props.navigation} />
+                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero + 1} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
                     <Image
                         style={questionStyle.img}
-                        source={q.image}
+                        source={this.state.questionEnCours.image}
                     />
-                    <Text style={questionStyle.intitule}>{q.intitule}</Text>
+                    <Text style={questionStyle.intitule}>{this.state.questionEnCours.intitule}</Text>
+                </View>
 
-                    <Text>GOOD ANSWER TEXT</Text>
+                <View style={questionStyle.reponses}>
+                    <View style={questionStyle.bonneReponse}>
+                        <Image source={require('../../../assets/img/success.png')} style={questionStyle.logoReponse} />
+                        <Text style={questionStyle.titleBonneReponse}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
+                    </View>
+                </View>
+
+                <ScrollView showsVerticalScrollIndicator={false} style={questionStyle.explicationScrollView}>
+                    <Text style={questionStyle.explication}>{this.state.questionEnCours.explication}</Text>
+                </ScrollView>
+
+                <View>
+                    <Button onPress={() => { this._nextQuestion() }} title="Suivant" buttonStyle={questionStyle.nextQuestion} titleStyle={buttonStyle.titleButtonStyle} />
                 </View>
             </View>
         );
     }
 
 
-    _badAnswerView(q){
+    _badAnswerView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
-                <HeaderCoinsQuestion title="Lvl 1" questionNumber={this.state.numeroQuestion} navigation={this.props.navigation} />
+                <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero + 1} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
                     <Image
                         style={questionStyle.img}
-                        source={q.image}
+                        source={this.state.questionEnCours.image}
                     />
-                    <Text style={questionStyle.intitule}>{q.intitule}</Text>
+                    <Text style={questionStyle.intitule}>{this.state.questionEnCours.intitule}</Text>
+                </View>
 
-                    <Text>BAD ANSWER TEXT</Text>
+                <View style={questionStyle.reponses}>
+                    <View style={questionStyle.mauvaiseReponse}>
+                        <Image source={require('../../../assets/img/error.png')} style={questionStyle.logoReponse} />
+                        <Text style={questionStyle.titleMauvaiseReponse}>{this.state.questionEnCours.reponses[this.state.reponseDonnee]}</Text>
+                    </View>
+
+                    <View style={questionStyle.bonneReponse}>
+                        <Image source={require('../../../assets/img/success.png')} style={questionStyle.logoReponse} />
+                        <Text style={questionStyle.titleBonneReponse}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
+                    </View>
+                </View>
+
+                <ScrollView showsVerticalScrollIndicator={false} style={questionStyle.explicationScrollView}>
+                    <Text style={questionStyle.explication}>{this.state.questionEnCours.explication}</Text>
+                </ScrollView>
+
+                <View>
+                    <Button onPress={() => { this._nextQuestion() }} title="Suivant" buttonStyle={questionStyle.nextQuestion} titleStyle={buttonStyle.titleButtonStyle} />
                 </View>
             </View>
         );
@@ -119,21 +152,87 @@ export default class QuestionScreen extends React.Component {
 
     _nextQuestion(){
 
+        console.log(this.state.questions.length);
+
+        if(this.state.questionEnCours.numero + 1 !== this.state.questions.length){
+            this.setState({
+                questionEnCours: this.props.navigation.state.params.niveau.questions[this.state.questionEnCours.numero + 1],
+                viewQuestion: true
+            });
+        } else{
+            this.setState({
+                finishView: true
+            });
+        }
+        
+    }
+
+    _finishView(){
+        let scoreMinimum = (this.state.questions.length/2) * this.state.valeurQuestion;
+        if(this.state.score < scoreMinimum){
+            return(
+                <View style={[appStyle.body, appStyle.padding]}>
+                    <View style={finishStyle.firstView}>
+                        <Image source={require("../../../assets/img/sad.png")} style={finishStyle.img} />
+                    </View>
+                    
+                    <View style={finishStyle.secondView}>
+                        <Text style={finishStyle.msg}>Dommage...</Text>
+                        <Text style={looseStyle.text}>Retente ta chance</Text>
+                    </View>
+                    
+                    <View style={finishStyle.thirdView}>
+                        <Button onPress={() => { this.props.navigation.push("Question", { questions: this.state.questions, niveau: this.state.niveauActuel }) }} title="Rejouer" buttonStyle={buttonStyle.connexion} titleStyle={buttonStyle.titleButtonStyle} />
+                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+                    </View>                  
+                </View>
+            );
+        } else{
+            console.log(this.state.niveauActuel);
+            return(
+                <View style={[appStyle.body, appStyle.padding]}>
+                    <View style={finishStyle.firstView}>
+                        <Image source={require("../../../assets/img/confetti.png")} style={finishStyle.img} />
+                    </View>
+
+                    <View style={finishStyle.secondView}>
+                        <Text style={finishStyle.msg}>Bravo !</Text>
+                        <Text style={winStyle.pointsText}>+ {this.state.score} points</Text>
+                        <View style={winStyle.piecesView}>
+                            <Text style={winStyle.piecesText}>+ {this.state.niveauActuel.nbPieces}</Text>
+                            <Image style={winStyle.piecesImg} source={(require("../../../assets/img/coins.png"))} />
+                        </View>
+                    </View>
+
+                    <View style={finishStyle.thirdView}>
+                        <Button onPress={() => { }} title="Partager le résultat" buttonStyle={winStyle.shareButton} titleStyle={buttonStyle.titleButtonStyle} />
+                        <Button onPress={() => { }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+                    </View> 
+                    
+
+                </View>
+            )
+        }
     }
 
 
     render() {
         if (this.state.viewQuestion){
             return (
-                this._questionView(this.state.questionEnCours)
+                this._questionView()
             );
-        } else {
+        } else if(this.state.finishView) {
+            return (
+                this._finishView()
+            );
+        } else{
             switch (this.state.answerIsGood) {
                 case true:
-                    return (this._goodAnswerView(this.state.questionEnCours));
+                    return (this._goodAnswerView());
                     break;
                 case false:
-                    return (this._badAnswerView(this.state.questionEnCours));
+                    return (this._badAnswerView());
                     break;
             }
         }

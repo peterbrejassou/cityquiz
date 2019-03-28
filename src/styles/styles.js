@@ -366,8 +366,152 @@ export const questionStyle = StyleSheet.create({
         height: 30,
     },
 
-    indiceScrollView: {
-        paddingLeft: 20,
-        paddingRight: 20
+    reponses:{
+        marginTop: 20
+    },
+
+    bonneReponse: {
+        backgroundColor: 'white',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'white',
+        width: 300,
+        height: 70,
+        marginTop: 5,
+        marginBottom: 0,
+        marginLeft: 15,
+        marginRight: 5,
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: -5,
+    },
+
+    titleBonneReponse: {
+        color: 'black',
+        fontSize: 16
+    },
+
+    mauvaiseReponse: {
+        backgroundColor: 'transparent',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'white',
+        width: 300,
+        height: 70,
+        marginTop: 5,
+        marginBottom: 10,
+        marginLeft: 15,
+        marginRight: 5,
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    titleMauvaiseReponse: {
+        color: 'white',
+        fontSize: 16
+    },
+
+    explicationScrollView:{
+        marginTop: 15
+    },
+
+    explication: {
+        color: 'white', 
+        textAlign: 'justify' 
+    },
+
+    logoReponse: {
+        width: 40,
+        height: 40,
+        position: 'absolute',
+        top: -7,
+        left: -170
+    },
+
+    nextQuestion: {
+        backgroundColor: greenColor,
+        height: 52,
+        borderRadius: 100,
+        marginBottom: 20,
+        marginTop: 20
+    }
+});
+
+
+export const finishStyle = StyleSheet.create({
+    firstView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    secondView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    thirdView: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+
+    img: {
+        width: 150,
+        height: 150,
+        marginTop: 20
+    },
+
+    msg: {
+        color: 'white',
+        textTransform: 'uppercase',
+        fontSize: 40,
+        marginTop: 20
+    },
+});
+
+
+export const winStyle = StyleSheet.create({
+    pointsText: {
+        color: greenColor,
+        fontSize: 18
+    },
+    
+    piecesView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    piecesText: {
+        color: 'yellow',
+        fontSize: 18
+    },
+
+    piecesImg: {
+        width: 15,
+        height: 15,
+        marginLeft: 5
+    },
+
+    shareButton: {
+        backgroundColor: 'transparent',
+        borderColor: 'white',
+        borderWidth: 1,
+        height: 52,
+        borderRadius: 100
+    }
+});
+
+export const looseStyle = StyleSheet.create({
+    text: {
+        color: 'white',
+        fontSize: 18
+    },
+
+    buttonNotFirst: {
+        marginTop: 15
     }
 });
