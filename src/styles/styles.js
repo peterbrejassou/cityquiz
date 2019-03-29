@@ -190,7 +190,7 @@ export const headerStyle = StyleSheet.create({
     title: {
         color: whiteColor,
         fontSize: 20,
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
 
     coinsView: {
@@ -215,6 +215,18 @@ export const headerStyle = StyleSheet.create({
     nbQuestion: {
         color: '#FFFFFFBB',
         fontSize: 12,
+    },
+
+    headerSimpleMainView: {
+        marginTop: 25,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    headerSimpleBtnMenuTouchable: {
+        position: 'absolute',
+        left: 0
     }
 });
 
@@ -529,5 +541,59 @@ export const looseStyle = StyleSheet.create({
 
     buttonNotFirst: {
         marginTop: 15
+    }
+});
+
+
+export const profilStyle = StyleSheet.create({
+    firstSection: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 3
+    },
+
+    secondSection: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'flex-start'
+    },
+
+    thirdSection: {
+        flex: 5
+    },
+
+    viewCoins: {
+        flexDirection: 'row',
+    },
+
+    statsTitle: {
+        color: whiteColor,
+        fontSize: 15,
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
+    },
+
+    row:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        marginTop: 30,
+    },
+
+    col: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    stat: {
+        color: whiteColor,
+        fontSize: 25,
+        fontWeight: 'bold',
+    },
+
+    textStat: {
+        color: whiteColor,
+        fontSize: 13,
     }
 });
