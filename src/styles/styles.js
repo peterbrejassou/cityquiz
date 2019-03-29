@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native'
 
 const greenColor = '#66B96A';
 const grayColor = '#3A3E49';

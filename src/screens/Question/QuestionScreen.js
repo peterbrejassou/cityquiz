@@ -20,7 +20,8 @@ export default class QuestionScreen extends React.Component {
             indiceDisplayed: false,
             viewQuestion: true,
             answerIsGood: null,
-            finishView: false
+            finishView: false,
+            nextLevelAvailable: true
             
         }
     }
@@ -152,20 +153,20 @@ export default class QuestionScreen extends React.Component {
     }
 
     _nextQuestion(){
-
-        console.log(this.state.questions.length);
-
         if(this.state.questionEnCours.numero !== this.state.questions.length){
             this.setState({
                 questionEnCours: this.props.navigation.state.params.niveau.questions[this.state.questionEnCours.numero],
                 viewQuestion: true
             });
         } else{
-            this.setState({
-                finishView: true
-            });
+            this.setState({finishView: true});
         }
-        
+    }
+
+    _generateButtonNextLevel(){
+        if (niveauData[this.state.niveauActuel.id] !== undefined) {
+            return <Button onPress={() => { this.props.navigation.push("Question", { niveau: niveauData[this.state.niveauActuel.id] }); }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+        }
     }
 
     _finishView(){
@@ -188,8 +189,7 @@ export default class QuestionScreen extends React.Component {
                     </View>                  
                 </View>
             );
-        } else{
-            console.log(this.state.niveauActuel);
+        } else {
             return(
                 <View style={[appStyle.body, appStyle.padding]}>
                     <View style={finishStyle.firstView}>
@@ -212,7 +212,7 @@ export default class QuestionScreen extends React.Component {
                             <Image source={require("../../../assets/img/share.png")} style={winStyle.shareButtonImg} />
                             <Text style={winStyle.titleShareButton}>Partager le résultat</Text>
                         </TouchableOpacity>
-                        <Button onPress={() => { this.props.navigation.push("Question", { niveau: niveauData[this.state.niveauActuel.id] }) }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+                        {this._generateButtonNextLevel()}
                         <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
                     </View> 
                 </View>
