@@ -26,7 +26,7 @@ const AppNavigator = createStackNavigator(
     Classement: { screen: ClassementScreen }
   },
   {
-    initialRouteName: "Profil",
+    initialRouteName: "Classement",
     headerMode: 'none'
   }
 );

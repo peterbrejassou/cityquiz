@@ -601,3 +601,49 @@ export const profilStyle = StyleSheet.create({
         fontSize: 13,
     }
 });
+
+
+export const classementStyle = StyleSheet.create({
+    scrollView: {
+        marginTop: 40
+    },
+
+    subView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        borderBottomWidth: 1,
+        paddingBottom: 15,
+        borderColor: '#FFFFFF1A',
+        paddingLeft: 30,
+        paddingTop: 15
+    },
+
+    number: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: whiteColor,
+        paddingRight: 60,
+    },
+    
+    img:{
+        width: 70,
+        height: 70,
+        borderRadius: 100,
+    },
+
+    viewNamePoints: {
+        paddingLeft: 20,
+    },
+    
+    name: {
+        fontSize: 16,
+        color: whiteColor
+    },
+    
+    points: {
+        fontSize: 12,
+        color: whiteColor,
+        paddingTop: 5,
+    }
+});
