@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
-import { cardNiveauStyle } from '../../styles/styles';
+import { appStyle, cardNiveauStyle } from '../../styles/styles';
 
 export default class CardNiveau extends React.Component {
 
@@ -12,17 +12,17 @@ export default class CardNiveau extends React.Component {
   render() {
     return (
       <View style={cardNiveauStyle.mainView}>
-        <Text style={cardNiveauStyle.title}>{this.props.niveau.nom}</Text>
+        <Text style={[appStyle.customFont, cardNiveauStyle.title]}>{this.props.niveau.nom}</Text>
         <View style={cardNiveauStyle.viewQuestion}>
-          <Text style={cardNiveauStyle.whiteText}>Questions : </Text>
-          <Text style={cardNiveauStyle.whiteText}>{this.props.niveau.questions.length}</Text>
+          <Text style={[appStyle.customFont, cardNiveauStyle.whiteText]}>Questions : </Text>
+          <Text style={[appStyle.customFont, cardNiveauStyle.whiteText]}>{this.props.niveau.questions.length}</Text>
         </View>
         <View style={cardNiveauStyle.viewDifficulty}>
-          <Text style={cardNiveauStyle.whiteText}>Difficulté : </Text>
-          <Text style={cardNiveauStyle.whiteText}>{this.props.niveau.difficulte}</Text>
+          <Text style={[appStyle.customFont, cardNiveauStyle.whiteText]}>Difficulté : </Text>
+          <Text style={[appStyle.customFont, cardNiveauStyle.whiteText]}>{this.props.niveau.difficulte}</Text>
         </View>
         <View style={cardNiveauStyle.buttonView}>
-          <Button onPress={() => { this.props.navigation.navigate('Question', { niveau: this.props.niveau })}} title="Démarrer" buttonStyle={cardNiveauStyle.button} titleStyle={cardNiveauStyle.titleButton} />
+          <Button onPress={() => { this.props.navigation.navigate('Question', { niveau: this.props.niveau }) }} title="Démarrer" buttonStyle={cardNiveauStyle.button} titleStyle={[appStyle.customFont, cardNiveauStyle.titleButton]} />
         </View>
       </View>
     );

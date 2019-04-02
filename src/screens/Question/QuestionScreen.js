@@ -22,7 +22,6 @@ export default class QuestionScreen extends React.Component {
             answerIsGood: null,
             finishView: false,
             nextLevelAvailable: true
-            
         }
     }
     
@@ -36,11 +35,11 @@ export default class QuestionScreen extends React.Component {
                         style={questionStyle.img}
                         source={this.state.questionEnCours.image}
                     />
-                    <Text style={questionStyle.intitule}>{this.state.questionEnCours.intitule}</Text>
+                    <Text style={[appStyle.customFont, questionStyle.intitule]}>{this.state.questionEnCours.intitule}</Text>
 
                     <View style={questionStyle.buttonsView}>
                         {this.state.questionEnCours.reponses.map((r, index) =>
-                            <Button key={r} onPress={() => { this._valideReponse(index) }} title={r} buttonStyle={questionStyle.buttonAnswer} titleStyle={questionStyle.titleButtonAnswer} />
+                            <Button key={r} onPress={() => { this._valideReponse(index) }} title={r} buttonStyle={questionStyle.buttonAnswer} titleStyle={[appStyle.customFont, questionStyle.titleButtonAnswer]} />
                         )}
                     </View>
 
@@ -48,15 +47,15 @@ export default class QuestionScreen extends React.Component {
                         onPress={() => { this._displayIndice() }}
                         style={questionStyle.buttonIndice}>
                         <Image source={require("../../../assets/img/loupe.png")} style={questionStyle.iconIndice} />
-                        <Text style={questionStyle.titleButtonIndice}>Indice</Text>
+                        <Text style={[appStyle.customFont, questionStyle.titleButtonIndice]}>Indice</Text>
                     </TouchableOpacity>
                 </View>
                 
                 {this.state.indiceDisplayed ?
                     <View style={questionStyle.indiceView}>
-                        <Text style={questionStyle.indiceTitle}>Indice</Text>
+                        <Text style={[appStyle.customFont, questionStyle.indiceTitle]}>Indice</Text>
                         <ScrollView showsVerticalScrollIndicator={false} style={questionStyle.indiceScrollView}>
-                            <Text style={questionStyle.indiceContent}>{this.state.questionEnCours.indice}</Text>
+                            <Text style={[appStyle.customFont, questionStyle.indiceContent]}>{this.state.questionEnCours.indice}</Text>
                         </ScrollView>
                         <TouchableOpacity
                             onPress={() => { this._displayIndice() }}
@@ -94,22 +93,22 @@ export default class QuestionScreen extends React.Component {
                         style={questionStyle.img}
                         source={this.state.questionEnCours.image}
                     />
-                    <Text style={questionStyle.intitule}>{this.state.questionEnCours.intitule}</Text>
+                    <Text style={[appStyle.customFont, questionStyle.intitule]}>{this.state.questionEnCours.intitule}</Text>
                 </View>
 
                 <View style={questionStyle.reponses}>
                     <View style={questionStyle.bonneReponse}>
                         <Image source={require('../../../assets/img/success.png')} style={questionStyle.logoReponse} />
-                        <Text style={questionStyle.titleBonneReponse}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
+                        <Text style={[appStyle.customFont, questionStyle.titleBonneReponse]}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
                     </View>
                 </View>
 
                 <ScrollView showsVerticalScrollIndicator={false} style={questionStyle.explicationScrollView}>
-                    <Text style={questionStyle.explication}>{this.state.questionEnCours.explication}</Text>
+                    <Text style={[appStyle.customFont, questionStyle.explication]}>{this.state.questionEnCours.explication}</Text>
                 </ScrollView>
 
                 <View>
-                    <Button onPress={() => { this._nextQuestion() }} title="Suivant" buttonStyle={questionStyle.nextQuestion} titleStyle={buttonStyle.titleButtonStyle} />
+                    <Button onPress={() => { this._nextQuestion() }} title="Suivant" buttonStyle={questionStyle.nextQuestion} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                 </View>
             </View>
         );
@@ -126,27 +125,27 @@ export default class QuestionScreen extends React.Component {
                         style={questionStyle.img}
                         source={this.state.questionEnCours.image}
                     />
-                    <Text style={questionStyle.intitule}>{this.state.questionEnCours.intitule}</Text>
+                    <Text style={[appStyle.customFont, questionStyle.intitule]}>{this.state.questionEnCours.intitule}</Text>
                 </View>
 
                 <View style={questionStyle.reponses}>
                     <View style={questionStyle.mauvaiseReponse}>
                         <Image source={require('../../../assets/img/error.png')} style={questionStyle.logoReponse} />
-                        <Text style={questionStyle.titleMauvaiseReponse}>{this.state.questionEnCours.reponses[this.state.reponseDonnee]}</Text>
+                        <Text style={[appStyle.customFont, questionStyle.titleMauvaiseReponse]}>{this.state.questionEnCours.reponses[this.state.reponseDonnee]}</Text>
                     </View>
 
                     <View style={questionStyle.bonneReponse}>
                         <Image source={require('../../../assets/img/success.png')} style={questionStyle.logoReponse} />
-                        <Text style={questionStyle.titleBonneReponse}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
+                        <Text style={[appStyle.customFont, questionStyle.titleBonneReponse]}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
                     </View>
                 </View>
 
                 <ScrollView showsVerticalScrollIndicator={false} style={questionStyle.explicationScrollView}>
-                    <Text style={questionStyle.explication}>{this.state.questionEnCours.explication}</Text>
+                    <Text style={[appStyle.customFont, questionStyle.explication]}>{this.state.questionEnCours.explication}</Text>
                 </ScrollView>
 
                 <View>
-                    <Button onPress={() => { this._nextQuestion() }} title="Suivant" buttonStyle={questionStyle.nextQuestion} titleStyle={buttonStyle.titleButtonStyle} />
+                    <Button onPress={() => { this._nextQuestion() }} title="Suivant" buttonStyle={questionStyle.nextQuestion} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                 </View>
             </View>
         );
@@ -165,7 +164,7 @@ export default class QuestionScreen extends React.Component {
 
     _generateButtonNextLevel(){
         if (niveauData[this.state.niveauActuel.id] !== undefined) {
-            return <Button onPress={() => { this.props.navigation.push("Question", { niveau: niveauData[this.state.niveauActuel.id] }); }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+            return <Button onPress={() => { this.props.navigation.push("Question", { niveau: niveauData[this.state.niveauActuel.id] }); }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
         }
     }
 
@@ -179,13 +178,13 @@ export default class QuestionScreen extends React.Component {
                     </View>
                     
                     <View style={finishStyle.secondView}>
-                        <Text style={finishStyle.msg}>Dommage...</Text>
-                        <Text style={looseStyle.text}>Retente ta chance</Text>
+                        <Text style={[appStyle.customFont, finishStyle.msg]}>Dommage...</Text>
+                        <Text style={[appStyle.customFont, looseStyle.text]}>Retente ta chance</Text>
                     </View>
                     
                     <View style={finishStyle.thirdView}>
-                        <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.state.niveauActuel }) }} title="Rejouer" buttonStyle={buttonStyle.connexion} titleStyle={buttonStyle.titleButtonStyle} />
-                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+                        <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.state.niveauActuel }) }} title="Rejouer" buttonStyle={buttonStyle.connexion} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View>                  
                 </View>
             );
@@ -197,10 +196,10 @@ export default class QuestionScreen extends React.Component {
                     </View>
 
                     <View style={finishStyle.secondView}>
-                        <Text style={finishStyle.msg}>Bravo !</Text>
-                        <Text style={winStyle.pointsText}>+ {this.state.score} points</Text>
+                        <Text style={[appStyle.customFont, finishStyle.msg]}>Bravo !</Text>
+                        <Text style={[appStyle.customFont, winStyle.pointsText]}>+ {this.state.score} points</Text>
                         <View style={winStyle.piecesView}>
-                            <Text style={winStyle.piecesText}>+ {this.state.niveauActuel.nbPieces}</Text>
+                            <Text style={[appStyle.customFont, winStyle.piecesText]}>+ {this.state.niveauActuel.nbPieces}</Text>
                             <Image style={winStyle.piecesImg} source={(require("../../../assets/img/coins.png"))} />
                         </View>
                     </View>
@@ -210,10 +209,10 @@ export default class QuestionScreen extends React.Component {
                         onPress={() => { alert("Share") }}
                         style={winStyle.shareButton}>
                             <Image source={require("../../../assets/img/share.png")} style={winStyle.shareButtonImg} />
-                            <Text style={winStyle.titleShareButton}>Partager le résultat</Text>
+                            <Text style={[appStyle.customFont, winStyle.titleShareButton]}>Partager le résultat</Text>
                         </TouchableOpacity>
                         {this._generateButtonNextLevel()}
-                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={buttonStyle.titleButtonStyle} />
+                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View> 
                 </View>
             )

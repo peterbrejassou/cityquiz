@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { menuItemStyle } from '../../styles/styles';
+import { appStyle, menuItemStyle } from '../../styles/styles';
 
 export default class MenuItem extends React.Component {
 
@@ -12,7 +12,7 @@ export default class MenuItem extends React.Component {
                     style={{flexDirection: 'row'}}>
 
                     <Image source={this.props.logo} style={menuItemStyle.icon} />
-                    <Text style={menuItemStyle.text}>{this.props.title}</Text>
+                    <Text style={[appStyle.customFont, menuItemStyle.text]}>{this.props.title}</Text>
                 </TouchableOpacity>
             </View>
         );

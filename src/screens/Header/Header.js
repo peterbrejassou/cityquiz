@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { headerStyle } from '../../styles/styles';
+import { appStyle, headerStyle } from '../../styles/styles';
 
 export default class Header extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export default class Header extends React.Component {
                 <TouchableOpacity style={headerStyle.headerSimpleBtnMenuTouchable} onPress={() => { this.props.navigation.navigate('Menu') }}>
                     <Image style={headerStyle.btnMenu} source={require('../../../assets/img/menu.png')}></Image>
                 </TouchableOpacity>       
-                <Text style={headerStyle.title}>{this.props.title}</Text>
+                <Text style={[appStyle.customFont, headerStyle.title]}>{this.props.title}</Text>
             </View>
         );
     }

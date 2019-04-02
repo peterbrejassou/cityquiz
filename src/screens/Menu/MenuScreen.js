@@ -24,8 +24,8 @@ export default class MenuScreen extends React.Component {
 
                     <View style={menuStyle.secondSection}>
                         <Image source={require(imgPath + 'users/john_doe.jpg')} style={menuStyle.imgUser} />
-                        <Text style={[menuStyle.whiteText, { fontSize: 32 }]}>John Doe</Text>
-                        <Text style={[menuStyle.whiteText, menuStyle.idUser]}>@johndoe</Text>
+                        <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>John Doe</Text>
+                        <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@johndoe</Text>
                     </View>
 
                     <View style={menuStyle.thirdSection}>
@@ -39,14 +39,14 @@ export default class MenuScreen extends React.Component {
                             style={menuStyle.bottomLogos}
                             source={require(imgPath + 'parametres.png')}
                         />
-                        <Text style={menuStyle.bottomTexts}>Paramètres</Text>
+                        <Text style={[appStyle.customFont, menuStyle.bottomTexts]}>Paramètres</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => {this.props.navigation.navigate('Login')}}>
                         <Image
                             style={menuStyle.bottomLogos}
                             source={require(imgPath + 'logout.png')}
                         />
-                        <Text style={menuStyle.bottomTexts}>Déconnexion</Text>
+                        <Text style={[appStyle.customFont, menuStyle.bottomTexts]}>Déconnexion</Text>
                     </TouchableOpacity>
                 </View>
             </View>

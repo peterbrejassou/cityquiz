@@ -6,7 +6,7 @@ export default class ProposerLieuScreen extends React.Component {
     render() {
         return (
             <View style={appStyle.body}>
-                <Text style={{ color: 'white' }}>Proposer un lieu</Text>
+                <Text style={[appStyle.customFont, { color: 'white' }]}>Proposer un lieu</Text>
             </View>
         );
     }

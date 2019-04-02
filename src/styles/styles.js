@@ -17,6 +17,10 @@ export const appStyle = StyleSheet.create({
 
     mainView: {
         flex: 1
+    },
+
+    customFont: {
+        fontFamily: "Montserrat-Regular"
     }
 });
 

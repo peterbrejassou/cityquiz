@@ -6,7 +6,7 @@ export default class BadgesScreen extends React.Component {
     render() {
         return (
             <View style={appStyle.body}>
-                <Text style={{ color: 'white' }}>Badges</Text>
+                <Text style={[appStyle.customFont, { color: 'white' }]}>Badges</Text>
             </View>
         );
     }

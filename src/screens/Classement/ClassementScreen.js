@@ -6,7 +6,7 @@ export default class ClassementScreen extends React.Component {
     render() {
         return (
             <View style={appStyle.body}>
-                <Text style={{ color: 'white' }}>Classement</Text>
+                <Text style={[appStyle.customFont, { color: 'white' }]}>Classement</Text>
             </View>
         );
     }
