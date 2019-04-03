@@ -49,6 +49,7 @@ export const loginStyle = StyleSheet.create({
 
     title: {
         fontSize: 40,
+        fontFamily: "Montserrat-Bold",
         color: whiteColor,
     },
 

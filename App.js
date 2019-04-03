@@ -1,5 +1,9 @@
 import React from "react";
 import { createStackNavigator, createAppContainer } from "react-navigation";
+
+import { Provider } from 'react-redux';
+import store from './src/store/configureStore';
+
 import LoginScreen from './src/screens/Login/LoginScreen';
 import InscriptionScreen from './src/screens/Inscription/InscriptionScreen';
 import MenuScreen from './src/screens/Menu/MenuScreen';
@@ -10,7 +14,6 @@ import QuestionScreen from './src/screens/Question/QuestionScreen';
 import ProfilScreen from './src/screens/Profil/ProfilScreen';
 import BadgesScreen from './src/screens/Badges/BadgesScreen';
 import ClassementScreen from './src/screens/Classement/ClassementScreen';
-
 
 const AppNavigator = createStackNavigator(
   {
@@ -26,12 +29,15 @@ const AppNavigator = createStackNavigator(
     Classement: { screen: ClassementScreen }
   },
   {
-    initialRouteName: "Classement",
+    initialRouteName: 'Login',
     headerMode: 'none'
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const CityQuizApp = createAppContainer(AppNavigator);
 
 export default () =>
-  <AppContainer />
+  <Provider store={store}>
+    <CityQuizApp />
+  </Provider>
+  

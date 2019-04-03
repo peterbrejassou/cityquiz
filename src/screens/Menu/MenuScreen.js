@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { appStyle, menuStyle } from '../../styles/styles';
 import MenuItem from './MenuItem';
@@ -6,8 +7,20 @@ import {menuList} from './MenuList';
 
 var imgPath = '../../../assets/img/';
 
-export default class MenuScreen extends React.Component {
+class MenuScreen extends React.Component {
+
+    _deconnexion(){
+        userDefault = {
+            prenom: "",
+            nom: ""
+        };
+        
+        this.props.dispatch({ type: 'DISCONNECT_USER', value: userDefault });
+        this.props.navigation.navigate('Login', {deconnexion: true});
+    }
+
     render() {
+
         var items = menuList.map((item) => {
             return <MenuItem key={item.title} title={item.title} logo={item.logo} screen={item.screen} navigation={this.props.navigation}></MenuItem>
         });
@@ -24,8 +37,8 @@ export default class MenuScreen extends React.Component {
 
                     <View style={menuStyle.secondSection}>
                         <Image source={require(imgPath + 'users/john_doe.jpg')} style={menuStyle.imgUser} />
-                        <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>John Doe</Text>
-                        <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@johndoe</Text>
+                        <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
+                        <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@{this.props.userConnected.username}</Text>
                     </View>
 
                     <View style={menuStyle.thirdSection}>
@@ -34,14 +47,14 @@ export default class MenuScreen extends React.Component {
                 </View>
 
                 <View style={menuStyle.fourthSection}>
-                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => {this.props.navigation.navigate('Parametres')}}>
+                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => this.props.navigation.navigate('Parametres')}>
                         <Image
                             style={menuStyle.bottomLogos}
                             source={require(imgPath + 'parametres.png')}
                         />
                         <Text style={[appStyle.customFont, menuStyle.bottomTexts]}>Paramètres</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => {this.props.navigation.navigate('Login')}}>
+                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => this._deconnexion()}>
                         <Image
                             style={menuStyle.bottomLogos}
                             source={require(imgPath + 'logout.png')}
@@ -53,3 +66,11 @@ export default class MenuScreen extends React.Component {
         );
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        userConnected: state.userConnected
+    }
+}
+export default connect(mapStateToProps)(MenuScreen);

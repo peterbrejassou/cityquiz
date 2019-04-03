@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, Image } from 'react-native';
 import Header from '../Header/Header';
 import { appStyle, profilStyle, menuStyle, headerStyle } from '../../styles/styles';
 
 var imgPath = '../../../assets/img/';
 
-export default class ProfilScreen extends React.Component {
+class ProfilScreen extends React.Component {
     render() {
         return (
             <View style={[appStyle.body, appStyle.padding, appStyle.mainView]}>
@@ -13,14 +14,14 @@ export default class ProfilScreen extends React.Component {
 
                 <View style={profilStyle.firstSection}>
                     <Image source={require(imgPath + 'users/john_doe.jpg')} style={menuStyle.imgUser} />
-                    <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>John Doe</Text>
-                    <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@johndoe</Text>
+                    <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
+                    <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@{this.props.userConnected.username}</Text>
                 </View>
 
                 <View style={profilStyle.secondSection}>
-                    <Text style={[appStyle.customFont, menuStyle.whiteText]}>12350 points</Text>
+                    <Text style={[appStyle.customFont, menuStyle.whiteText]}>{this.props.userConnected.nbPoints} points</Text>
                     <View style={profilStyle.viewCoins}>
-                    <Text style={[appStyle.customFont, headerStyle.coinsText]}>120</Text>
+                        <Text style={[appStyle.customFont, headerStyle.coinsText]}>{this.props.userConnected.nbPieces}</Text>
                         <Image style={headerStyle.coinsImg} source={require(imgPath + 'coins.png')}></Image>
                     </View>
                 </View>
@@ -66,3 +67,10 @@ export default class ProfilScreen extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userConnected: state.userConnected
+    }
+}
+export default connect(mapStateToProps)(ProfilScreen);
