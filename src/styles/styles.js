@@ -55,7 +55,8 @@ export const loginStyle = StyleSheet.create({
 
     inputTitles: {
         color: whiteColor,
-        fontSize: 15
+        fontSize: 15,
+        fontFamily: 'Montserrat-Bold',
     },
 
     forgetPwd: {
@@ -96,7 +97,8 @@ export const buttonStyle = StyleSheet.create({
     },
 
     titleButtonStyle: {
-        color: whiteColor
+        color: whiteColor,
+        fontFamily: 'Montserrat-Bold'
     }
 });
 
@@ -156,7 +158,7 @@ export const menuStyle = StyleSheet.create({
     bottomTexts: {
         marginLeft: 20,
         color: whiteColor,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
     }
 });
 
@@ -195,7 +197,7 @@ export const headerStyle = StyleSheet.create({
     title: {
         color: whiteColor,
         fontSize: 20,
-        fontWeight: 'bold'
+        fontFamily: "Montserrat-Bold",
     },
 
     coinsView: {
@@ -232,6 +234,11 @@ export const headerStyle = StyleSheet.create({
     headerSimpleBtnMenuTouchable: {
         position: 'absolute',
         left: 0
+    },
+
+    help: {
+        width: 35,
+        height: 35
     }
 });
 
@@ -255,7 +262,7 @@ export const cardNiveauStyle = StyleSheet.create({
         color: whiteColor,
         textAlign: 'center',
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
         marginBottom: 20
     },
 
@@ -286,7 +293,7 @@ export const cardNiveauStyle = StyleSheet.create({
 
     titleButton: {
         color: whiteColor,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
     }
 });
 
@@ -305,7 +312,7 @@ export const questionStyle = StyleSheet.create({
     intitule: {
         color: whiteColor,
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
         marginTop: 20,
         textAlign: 'center'
     },
@@ -534,7 +541,7 @@ export const winStyle = StyleSheet.create({
     titleShareButton: {
         color: whiteColor,
         marginLeft: 10,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
     }
 });
 
@@ -575,7 +582,7 @@ export const profilStyle = StyleSheet.create({
     statsTitle: {
         color: whiteColor,
         fontSize: 15,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
         textTransform: 'uppercase'
     },
 
@@ -594,7 +601,7 @@ export const profilStyle = StyleSheet.create({
     stat: {
         color: whiteColor,
         fontSize: 25,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
     },
 
     textStat: {
@@ -622,7 +629,7 @@ export const classementStyle = StyleSheet.create({
 
     number: {
         fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: "Montserrat-Bold",
         color: whiteColor,
         paddingRight: 60,
     },
@@ -646,5 +653,156 @@ export const classementStyle = StyleSheet.create({
         fontSize: 12,
         color: whiteColor,
         paddingTop: 5,
+    }
+});
+
+
+export const proposerLieuStyle = StyleSheet.create({
+    mainView: {
+        marginTop: 30
+    },
+    
+    addTouchable: {
+        backgroundColor: '#FFFFFF80',
+        borderRadius: 10,
+        height: 180,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    addLogo: {
+        width: 35,
+        height: 35
+    },
+
+    inputsTitle: {
+        marginTop: 20,
+    },
+
+    inputs: {
+        marginTop: 5,
+    },
+
+    btnEnvoyer: {
+        marginTop: 30,
+        marginBottom: 30
+    }
+}); 
+
+
+export const helpScreenStyle = StyleSheet.create({
+    mainView: {
+        position: 'absolute',
+        top: 70,
+        backgroundColor: grayColor,
+        borderWidth: 1,
+        borderColor: whiteColor,
+        borderRadius: 10,
+        padding: 15,
+        zIndex: 10,
+        width: '100%',
+        height: 500
+    },
+
+    viewCross: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
+    },
+    
+    croix: {
+        width: 20,
+        height: 20,
+    },
+
+    viewContent: {
+        marginTop: 10
+    },
+
+    title: {
+        color: whiteColor,
+        fontSize: 20,
+        fontFamily: 'Montserrat-Bold'
+    },
+
+    content: {
+        color: whiteColor,
+        fontSize: 15,
+        marginTop: 20
+    }
+});
+
+
+export const parametresStyle = StyleSheet.create({
+    firstView: {
+        marginTop: 50
+    },
+    
+    titleSection: {
+        color: whiteColor,
+        fontSize: 18,
+        textTransform: 'uppercase',
+        fontFamily: 'Montserrat-Bold'
+    },
+
+    sectionSwitch: {
+        borderWidth: 1,
+        borderColor: '#FFFFFF33',
+        borderRadius: 10,
+        padding: 20,
+        marginTop: 10
+    },
+
+    optionSwitch: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    optionSwitch2: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20
+    },
+
+    titleOption: {
+        color: whiteColor,
+        fontSize: 15,
+    },
+
+    secondView: {
+        marginTop: 50
+    },
+
+    buttons: {
+        backgroundColor: '#FFFFFF80',
+        borderRadius: 10,
+        padding: 20,
+        marginTop: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 90
+    },
+
+    logoButtons: {
+        width: 30,
+        height: 30
+    },
+
+    textButton: {
+        color: whiteColor,
+        marginLeft: 20,
+        fontSize: 15,
+        fontFamily: 'Montserrat-Bold'
+    },
+
+    thirdView: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        marginBottom: 30
+    },
+
+    deleteCompte: {
+        color: '#EF5350',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Bold',
     }
 });

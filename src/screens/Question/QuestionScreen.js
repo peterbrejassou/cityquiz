@@ -44,7 +44,7 @@ export default class QuestionScreen extends React.Component {
                     </View>
 
                     <TouchableOpacity
-                        onPress={() => { this._displayIndice() }}
+                        onPress={() => this._displayIndice()}
                         style={questionStyle.buttonIndice}>
                         <Image source={require("../../../assets/img/loupe.png")} style={questionStyle.iconIndice} />
                         <Text style={[appStyle.customFont, questionStyle.titleButtonIndice]}>Indice</Text>

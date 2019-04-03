@@ -29,7 +29,7 @@ const AppNavigator = createStackNavigator(
     Classement: { screen: ClassementScreen }
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Parametres',
     headerMode: 'none'
   }
 );
