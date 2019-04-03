@@ -804,5 +804,47 @@ export const parametresStyle = StyleSheet.create({
         color: '#EF5350',
         textAlign: 'center',
         fontFamily: 'Montserrat-Bold',
+    },
+
+    titleUpdate: {
+        color: whiteColor,
+        fontSize: 16,
+        textTransform: 'uppercase',
+        fontFamily: 'Montserrat-Bold'
+    },
+
+    updateEmailView: {
+        marginTop: 20
+    },
+
+    inputTitle:{
+        marginTop: 20
+    },
+
+    input: {
+        marginTop: 5
+    },
+
+    btnUpdate: {
+        marginTop: 40
+    },
+
+    photoUpdateProfilView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        position: 'relative'
+    },
+
+    photoUpdateProfil: {
+        width: 120,
+        height: 120
+    },
+
+    addUpdatePhotoProfil: {
+        width: 25,
+        height: 25,
+        position: 'absolute',
+        top: '40%',
+        left: '29%'
     }
 });
