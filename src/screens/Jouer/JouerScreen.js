@@ -1,13 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, ScrollView } from 'react-native';
 import { appStyle, jouerStyle } from '../../styles/styles';
 import HeaderCoins from '../Header/HeaderCoins';
 import CardNiveau from '../Jouer/CardNiveau';
-import { niveauData } from '../../../assets/mocks/niveauData';
 
-export default class JouerScreen extends React.Component {
+class JouerScreen extends React.Component {
     render() {
-        var niveauItems = niveauData.map((item) => {
+        var niveauItems = this.props.niveaux.map((item) => {
             return <CardNiveau key={item.id} niveau={item} navigation={this.props.navigation} />
         });
 
@@ -23,3 +23,11 @@ export default class JouerScreen extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        niveaux: state.dataReducer.niveaux,
+        userConnected: state.userConnectedReducer.userConnected
+    };
+}
+export default connect(mapStateToProps)(JouerScreen);

@@ -9,13 +9,8 @@ var imgPath = '../../../assets/img/';
 
 class MenuScreen extends React.Component {
 
-    _deconnexion(){
-        userDefault = {
-            prenom: "",
-            nom: ""
-        };
-        
-        this.props.dispatch({ type: 'DISCONNECT_USER', value: userDefault });
+    _deconnexion(){      
+        this.props.dispatch({ type: 'DELOG_USER'});
         this.props.navigation.navigate('Login', {deconnexion: true});
     }
 
@@ -36,7 +31,7 @@ class MenuScreen extends React.Component {
                     </View>
 
                     <View style={menuStyle.secondSection}>
-                        <Image source={require(imgPath + 'users/john_doe.jpg')} style={menuStyle.imgUser} />
+                        <Image source={this.props.userConnected.photo } style={menuStyle.imgUser} />
                         <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
                         <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@{this.props.userConnected.username}</Text>
                     </View>
@@ -70,7 +65,7 @@ class MenuScreen extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        userConnected: state.userConnected
+        userConnected: state.userConnectedReducer.userConnected
     }
 }
 export default connect(mapStateToProps)(MenuScreen);

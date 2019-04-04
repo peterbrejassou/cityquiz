@@ -21,6 +21,12 @@ export const appStyle = StyleSheet.create({
 
     customFont: {
         fontFamily: "Montserrat-Regular"
+    },
+
+    backLogo: {
+        width: 30,
+        height: 30,
+        marginLeft: 30
     }
 });
 
@@ -86,6 +92,7 @@ export const inputStyle = StyleSheet.create({
         borderColor: whiteColor,
         borderRadius: 4,
         color: whiteColor,
+        marginTop: 5
     }
 });
 
@@ -851,5 +858,40 @@ export const parametresStyle = StyleSheet.create({
         position: 'absolute',
         top: '40%',
         left: '29%'
+    }
+});
+
+export const forgotPasswordStyle = StyleSheet.create({
+    header: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        height: 80
+    },
+    
+    title: {
+        color: whiteColor,
+        fontSize: 15,
+        marginTop: 30
+    },
+
+    text: {
+        color: whiteColor
+    },
+
+    firstSection: {
+        marginTop: 20,
+        alignItems: 'center'
+    },
+
+    secondSection: {
+        marginTop: 30
+    },
+
+    input: {
+        marginTop: 30,
+    }, 
+
+    btnView: {
+        paddingBottom: 30
     }
 });

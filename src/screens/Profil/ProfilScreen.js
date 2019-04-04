@@ -13,7 +13,7 @@ class ProfilScreen extends React.Component {
                 <Header title="Profil" navigation={this.props.navigation} />
 
                 <View style={profilStyle.firstSection}>
-                    <Image source={require(imgPath + 'users/john_doe.jpg')} style={menuStyle.imgUser} />
+                    <Image source={this.props.userConnected.photo} style={menuStyle.imgUser} />
                     <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
                     <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@{this.props.userConnected.username}</Text>
                 </View>
@@ -70,7 +70,7 @@ class ProfilScreen extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        userConnected: state.userConnected
+        userConnected: state.userConnectedReducer.userConnected
     }
 }
 export default connect(mapStateToProps)(ProfilScreen);

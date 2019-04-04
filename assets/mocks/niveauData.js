@@ -20,7 +20,8 @@ export const niveauData = [
                     "Le Panthéon"
                 ],
                 indice: "Il est situé en Loire Atlantique et est classé monument historique depuis 1840. C’est aujourd’hui un musée d’histoire.",
-                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis."
+                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis.",
+                valeur: 20
             },
             {
                 numero: 2,
@@ -34,7 +35,8 @@ export const niveauData = [
                     "Christelle Monjeau"
                 ],
                 indice: "Né en 1961 à Auxerre, c'est un artiste et plasticien français. Il vit et travaille à Paris",
-                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis."
+                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis.",
+                valeur: 20
             },
             {
                 numero: 3,
@@ -48,7 +50,8 @@ export const niveauData = [
                     "Fausse rep 3"
                 ],
                 indice: "Description indice lorem ipsum",
-                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis."
+                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis.",
+                valeur: 20
             }
         ]
     },
@@ -71,7 +74,8 @@ export const niveauData = [
                     "Fausse rep 3"
                 ],
                 indice: "Description indice lorem ipsum",
-                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis."
+                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis.",
+                valeur: 20
             }
         ]
     }

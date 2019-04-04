@@ -1,4 +1,7 @@
-import { createStore } from 'redux';
-import userReducer from './reducers/userReducer';
+import { createStore, combineReducers } from 'redux';
+import userConnectedReducer from './reducers/userConnectedReducer';
+import dataReducer from './reducers/dataReducer';
 
-export default createStore(userReducer);
+var rootReducer = combineReducers({ userConnectedReducer, dataReducer })
+
+export default createStore(rootReducer);

@@ -16,19 +16,19 @@ export default class ProposerLieuScreen extends React.Component {
                     </TouchableOpacity>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Nom du lieu</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input, proposerLieuStyle.inputs]} onChangeText={(lieu) => this.setState({ lieu })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(lieu) => this.setState({ lieu })} />
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Question</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input, proposerLieuStyle.inputs]} onChangeText={(question) => this.setState({ question })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(question) => this.setState({ question })} />
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Autre réponse 1</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input, proposerLieuStyle.inputs]} onChangeText={(autreRep1) => this.setState({ autreRep1 })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(autreRep1) => this.setState({ autreRep1 })} />
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Autre réponse 2</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input, proposerLieuStyle.inputs]} onChangeText={(autreRep2) => this.setState({ autreRep2 })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(autreRep2) => this.setState({ autreRep2 })} />
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Autre réponse 3</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input, proposerLieuStyle.inputs]} onChangeText={(autreRep3) => this.setState({ autreRep3 })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(autreRep3) => this.setState({ autreRep3 })} />
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Description</Text>
                     <TextInput 

@@ -1,18 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Image, Button } from 'react-native-elements';
 import HeaderCoinsQuestion from '../Header/HeaderCoinsQuestion';
 import { appStyle, questionStyle, buttonStyle, finishStyle, winStyle, looseStyle } from '../../styles/styles';
-import { niveauData } from '../../../assets/mocks/niveauData';
 
-
-export default class QuestionScreen extends React.Component {
+class QuestionScreen extends React.Component {
  
     constructor(props){
         super(props);
         this.state = {
             score: 0,
-            valeurQuestion: 20,
+            countBonnesReponses : 0,
             niveauActuel: this.props.navigation.state.params.niveau,
             questions: this.props.navigation.state.params.niveau.questions,
             questionEnCours: this.props.navigation.state.params.niveau.questions[0],
@@ -76,14 +75,19 @@ export default class QuestionScreen extends React.Component {
         this.setState({ viewQuestion: false, reponseDonnee: index });
 
         if (index == this.state.questionEnCours.bonneReponse) {
-            this.setState({ score: this.state.score + this.state.valeurQuestion, answerIsGood: true });
+            this.setState({ 
+                score: this.state.score + this.state.questionEnCours.valeur,
+                countBonnesReponses: this.state.countBonnesReponses + 1, 
+                answerIsGood: true 
+            });
+            this.props.dispatch({ type: 'UPDATE_POINTS_USER', value: this.state.questionEnCours.valeur });
         } else {
             this.setState({ viewQuestion: false, answerIsGood: false });
         }
     }
 
-
     _goodAnswerView(){
+        console.log(this.props.userConnected.nbPoints);
         return (
             <View style={[appStyle.body, appStyle.padding]}>
                 <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
@@ -163,13 +167,14 @@ export default class QuestionScreen extends React.Component {
     }
 
     _generateButtonNextLevel(){
-        if (niveauData[this.state.niveauActuel.id] !== undefined) {
-            return <Button onPress={() => { this.props.navigation.push("Question", { niveau: niveauData[this.state.niveauActuel.id] }); }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+        if (this.state.niveauActuel !== undefined) {
+            return <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.state.niveauActuel }); }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
         }
     }
 
     _finishView(){
-        let scoreMinimum = (this.state.questions.length/2) * this.state.valeurQuestion;
+        let scoreMinimum = 20;
+        this.props.dispatch({ type: 'UPDATE_PIECES_USER', value: this.state.niveauActuel.nbPieces });
         if(this.state.score < scoreMinimum){
             return(
                 <View style={[appStyle.body, appStyle.padding]}>
@@ -241,3 +246,11 @@ export default class QuestionScreen extends React.Component {
         }
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        niveaux: state.dataReducer.niveaux,
+        userConnected: state.userConnectedReducer.userConnected
+    };
+}
+export default connect(mapStateToProps)(QuestionScreen);

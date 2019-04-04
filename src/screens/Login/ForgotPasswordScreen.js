@@ -3,15 +3,12 @@ import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-nativ
 import { Button, Image } from 'react-native-elements';
 import { appStyle, loginStyle, inputStyle, buttonStyle, forgotPasswordStyle } from '../../styles/styles';
 
-export default class InscriptionScreen extends React.Component {
+export default class ForgotPasswordScreen extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            usernameInput: null,
-            emailInput: null,
-            passwordInput: null,
-            passwordConfirmInput: null
+            emailInput: null
         }
     }
 
@@ -21,28 +18,19 @@ export default class InscriptionScreen extends React.Component {
                 <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={forgotPasswordStyle.header}>
                     <Image style={appStyle.backLogo} source={require('../../../assets/img/back.png')} />
                 </TouchableOpacity>
-
-                <ScrollView>
+                <ScrollView contentContainerStyle={appStyle.body}>
                     <View style={[appStyle.padding, appStyle.mainView]}>
                         <View style={forgotPasswordStyle.firstSection}>
                             <Image source={require('../../../assets/img/logoApp.png')} style={{ width: 120, height: 103 }} />
                             <Text style={[appStyle.customFont, loginStyle.title]}>City Quiz</Text>
-                            <Text style={[appStyle.customFont, forgotPasswordStyle.title]}>Bienvenue !</Text>
+                            <Text style={[appStyle.customFont, forgotPasswordStyle.title]}>Mot de passe oublié</Text>
                         </View>
 
-                        <ScrollView style={forgotPasswordStyle.secondSection}>
-                            <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Nom d'utilisateur</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(usernameInput) => this.setState({ usernameInput })} />
-
+                        <View style={forgotPasswordStyle.secondSection}>
+                            <Text style={[appStyle.customFont, forgotPasswordStyle.text]}>Saisissez votre adresse mail ci-dessous, vous recevrez les instructions pour réinitialiser votre mot de passe.</Text>
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Adresse email</Text>
                             <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(emailInput) => this.setState({ emailInput })} />
-
-                            <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Mot de passe</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(passwordInput) => this.setState({ passwordInput })} />
-
-                            <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Confirmation du mot de passe</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(passwordConfirmInput) => this.setState({ passwordConfirmInput })} />
-                        </ScrollView>
+                        </View>
 
                         <View style={[loginStyle.thirdSection, forgotPasswordStyle.btnView]}>
                             <Button onPress={() => { }} title="Envoyer" buttonStyle={buttonStyle.connexion} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />

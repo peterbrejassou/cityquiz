@@ -6,6 +6,7 @@ import store from './src/store/configureStore';
 
 import LoginScreen from './src/screens/Login/LoginScreen';
 import InscriptionScreen from './src/screens/Inscription/InscriptionScreen';
+import ForgotPasswordScreen from './src/screens/Login/ForgotPasswordScreen';
 import MenuScreen from './src/screens/Menu/MenuScreen';
 import ParametresScreen from './src/screens/Parametres/ParametresScreen';
 import UpdateProfilScreen from './src/screens/Parametres/UpdateProfilScreen';
@@ -22,6 +23,7 @@ const AppNavigator = createStackNavigator(
   {
     Login: { screen: LoginScreen },
     Inscription: { screen: InscriptionScreen },
+    ForgotPassword: { screen: ForgotPasswordScreen },
     Menu: { screen: MenuScreen},
     Parametres: { screen: ParametresScreen },
     UpdateProfil: { screen: UpdateProfilScreen },
