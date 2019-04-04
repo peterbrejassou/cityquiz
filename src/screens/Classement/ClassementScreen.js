@@ -1,12 +1,11 @@
 import React from 'react';
+import {connect } from 'react-redux';
 import { View, Text, ScrollView, Image } from 'react-native';
 import Header from '../Header/Header';
 import { appStyle, classementStyle } from '../../styles/styles';
-
-var imgPath = "../../../assets/img/users/";
 import { userData } from '../../../assets/mocks/userData';
 
-export default class ClassementScreen extends React.Component {
+class ClassementScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +14,7 @@ export default class ClassementScreen extends React.Component {
     render() {
         var users = userData.map((user,index) => {
             return(
-                <View key={user.id} style={classementStyle.subView}>
+                <View key={user.id} style={[classementStyle.subView, this.props.userConnected == user ? classementStyle.greenView : null ]}>
                     <Text style={[appStyle.customFont, classementStyle.number]}>{index+1}</Text>
                     <Image style={classementStyle.img} source={user.photo} />
                     <View style={classementStyle.viewNamePoints}>
@@ -36,3 +35,10 @@ export default class ClassementScreen extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userConnected: state.userConnected
+    }
+}
+export default connect(mapStateToProps)(ClassementScreen);

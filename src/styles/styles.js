@@ -653,6 +653,11 @@ export const classementStyle = StyleSheet.create({
         fontSize: 12,
         color: whiteColor,
         paddingTop: 5,
+    },
+
+    greenView: {
+        backgroundColor: greenColor,
+        borderRadius: 10
     }
 });
 

@@ -61,9 +61,9 @@ export default class ParametresScreen extends React.Component {
                     </View>
                 </View>
 
-                <View style={parametresStyle.thirdView}>
+                <TouchableOpacity style={parametresStyle.thirdView}>
                     <Text style={parametresStyle.deleteCompte}>Supprimer le compte</Text>
-                </View>
+                </TouchableOpacity>
             </View>
         );
     }
