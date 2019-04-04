@@ -12,7 +12,8 @@ class LoginScreen extends React.Component {
         super(props);
         this.state = {
             usernameInput: null,
-            passwordInput: null
+            passwordInput: null,
+            badPasswordBool: false
         }
 
         if(this.props.users === undefined) {
@@ -37,8 +38,12 @@ class LoginScreen extends React.Component {
         if (this.props.userConnected === undefined || this.props.userConnected.prenom === "") {
             this.props.users.map((user) => {
                 if (usernameInput == user.username && passwordInput == user.password) {
+                    this.setState({ badPasswordBool: true });
                     this.props.dispatch({ type: 'LOG_USER', value: user });
                     this.props.navigation.navigate('Menu');
+                } else if (!this.state.badPasswordBool) {
+                    alert("Mauvais identifiants");
+                    this.setState({badPasswordBool: true});
                 }
             }); 
         }

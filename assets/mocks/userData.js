@@ -9,7 +9,7 @@ export const userData = [
         photo: require("../img/users/john_doe.jpg"),
         nbPoints: 0,
         nbPieces: 0,
-        badges: null,
+        badges: null
     },
     {
         id: 2,
@@ -19,9 +19,9 @@ export const userData = [
         nom: "Norris",
         prenom: "Chuck",
         photo: require("../img/users/chuck_norris.jpg"),
-        nbPoints: 0,
+        nbPoints: 200,
         nbPieces: 0,
-        badges: null,
+        badges: null
     },
     {
         id: 3,
@@ -31,8 +31,8 @@ export const userData = [
         nom: "Fedon",
         prenom: "Léo",
         photo: require("../img/users/leo_fedon.jpg"),
-        nbPoints: 0,
+        nbPoints: 100,
         nbPieces: 0,
-        badges: null,
+        badges: null
     }
 ];

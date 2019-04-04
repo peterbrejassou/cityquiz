@@ -12,9 +12,12 @@ class ClassementScreen extends React.Component {
     }
 
     render() {
-        var users = userData.map((user,index) => {
+        var usersTries = this.props.users.sort((a, b) => (a.nbPoints < b.nbPoints) ? 1 : -1)
+        console.log(usersTries);
+
+        var users = this.props.users.map((user, index) => {
             return(
-                <View key={user.id} style={[classementStyle.subView, this.props.userConnected == user ? classementStyle.greenView : null ]}>
+                <View key={user.id} style={[classementStyle.subView, this.props.userConnected === user ? classementStyle.greenView : null ]}>
                     <Text style={[appStyle.customFont, classementStyle.number]}>{index+1}</Text>
                     <Image style={classementStyle.img} source={user.photo} />
                     <View style={classementStyle.viewNamePoints}>
@@ -38,7 +41,8 @@ class ClassementScreen extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        userConnected: state.userConnected
+        users: state.dataReducer.users,
+        userConnected: state.userConnectedReducer.userConnected
     }
 }
 export default connect(mapStateToProps)(ClassementScreen);

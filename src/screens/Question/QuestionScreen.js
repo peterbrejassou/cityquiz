@@ -87,7 +87,6 @@ class QuestionScreen extends React.Component {
     }
 
     _goodAnswerView(){
-        console.log(this.props.userConnected.nbPoints);
         return (
             <View style={[appStyle.body, appStyle.padding]}>
                 <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
@@ -173,9 +172,15 @@ class QuestionScreen extends React.Component {
     }
 
     _finishView(){
-        let scoreMinimum = 20;
+        var scoreMinimum = 0;
+        this.state.niveauActuel.questions.forEach((q) => {
+            scoreMinimum += q.valeur;
+        });
+        scoreMinimum /= 2;
+
         this.props.dispatch({ type: 'UPDATE_PIECES_USER', value: this.state.niveauActuel.nbPieces });
-        if(this.state.score < scoreMinimum){
+
+        if (this.state.score < scoreMinimum){
             return(
                 <View style={[appStyle.body, appStyle.padding]}>
                     <View style={finishStyle.firstView}>
