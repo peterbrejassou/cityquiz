@@ -22,6 +22,7 @@ class QuestionScreen extends React.Component {
             finishView: false,
             nextLevelAvailable: true
         }
+
     }
     
     _questionView(){
@@ -68,21 +69,26 @@ class QuestionScreen extends React.Component {
     }
 
     _displayIndice() {
+        // On affiche ou cache l'indice (inversion de la variable)
         this.setState({ indiceDisplayed: !this.state.indiceDisplayed });
     }
 
     _valideReponse(index) {
         this.setState({ viewQuestion: false, reponseDonnee: index });
 
+        // Si c'est la bonne réponse
         if (index == this.state.questionEnCours.bonneReponse) {
+            // On update le score, on ajoute 1 au compteur de bonnes réponses, et on met awnserIsGood à true pour afficher l'écran "goodAnswerView"
             this.setState({ 
                 score: this.state.score + this.state.questionEnCours.valeur,
                 countBonnesReponses: this.state.countBonnesReponses + 1, 
                 answerIsGood: true 
             });
             this.props.dispatch({ type: 'UPDATE_POINTS_USER', value: this.state.questionEnCours.valeur });
+        // Si c'est la mauvaise réponse
         } else {
-            this.setState({ viewQuestion: false, answerIsGood: false });
+            // On met awnserIsGood à false pour afficher l'écran "badAnswerView"
+            this.setState({ answerIsGood: false });
         }
     }
 
@@ -166,19 +172,30 @@ class QuestionScreen extends React.Component {
     }
 
     _generateButtonNextLevel(){
-        if (this.state.niveauActuel !== undefined) {
-            return <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.state.niveauActuel }); }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+        // Si le niveau suivant est défini (l'id des niveaux commence à 1 dans les mock mais l'index du tablea niveaux commence à 0 donc on ne met pas -1)
+        if (this.props.niveaux[this.state.niveauActuel.id] !== undefined) {
+            // On affiche le bouton "Niveau Suivant" qui rappelle le component actuel mais avec le niveau suivant
+            return <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.props.niveaux[this.state.niveauActuel.id] }); }} title="Niveau suivant" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+        }
+    }
+
+    _renderNbPiecesGagnees(isNiveauDejaFait){
+        if (!isNiveauDejaFait){
+            return (
+                <View style={winStyle.piecesView}>
+                    <Text style={[appStyle.customFont, winStyle.piecesText]}>+ {this.state.niveauActuel.nbPieces}</Text>
+                    <Image style={winStyle.piecesImg} source={(require("../../../assets/img/coins.png"))} />
+                </View>
+            );
         }
     }
 
     _finishView(){
+        //Calcul du score minimum (= somme des points de chaque question / 2)
         var scoreMinimum = 0;
         this.state.niveauActuel.questions.forEach((q) => {
             scoreMinimum += q.valeur;
         });
-        scoreMinimum /= 2;
-
-        this.props.dispatch({ type: 'UPDATE_PIECES_USER', value: this.state.niveauActuel.nbPieces });
 
         if (this.state.score < scoreMinimum){
             return(
@@ -190,15 +207,27 @@ class QuestionScreen extends React.Component {
                     <View style={finishStyle.secondView}>
                         <Text style={[appStyle.customFont, finishStyle.msg]}>Dommage...</Text>
                         <Text style={[appStyle.customFont, looseStyle.text]}>Retente ta chance</Text>
+                        <Text style={[appStyle.customFont, winStyle.pointsText]}>{this.state.score > 0 ? "+ " + this.state.score + " points" : ""}</Text>
                     </View>
                     
                     <View style={finishStyle.thirdView}>
                         <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.state.niveauActuel }) }} title="Rejouer" buttonStyle={buttonStyle.connexion} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
-                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+                        <Button onPress={() => { this.props.navigation.navigate("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View>                  
                 </View>
             );
         } else {
+            // On enregistre la valuer de alreadyWon avant de la changer pour le render en dessous
+            var isNiveauDejaFait = this.props.niveaux[this.state.niveauActuel.id - 1].alreadyWon;
+
+            // Si le niveau n'a pas déjà été remporté auparavant
+            if (!this.props.niveaux[this.state.niveauActuel.id - 1].alreadyWon) {
+                // On update le nombre de pieces de l'utilisateur
+                this.props.dispatch({ type: 'UPDATE_PIECES_USER', value: this.state.niveauActuel.nbPieces });
+                // On passe le alreadyWon du niveau à true pour ne pas regagner des pièces si on refait le niveau
+                this.props.dispatch({ type: 'UPDATE_STATUS_ALREADYWON_LEVEL', value: this.state.niveauActuel.id });
+            }   
+
             return(
                 <View style={[appStyle.body, appStyle.padding]}>
                     <View style={finishStyle.firstView}>
@@ -208,10 +237,7 @@ class QuestionScreen extends React.Component {
                     <View style={finishStyle.secondView}>
                         <Text style={[appStyle.customFont, finishStyle.msg]}>Bravo !</Text>
                         <Text style={[appStyle.customFont, winStyle.pointsText]}>+ {this.state.score} points</Text>
-                        <View style={winStyle.piecesView}>
-                            <Text style={[appStyle.customFont, winStyle.piecesText]}>+ {this.state.niveauActuel.nbPieces}</Text>
-                            <Image style={winStyle.piecesImg} source={(require("../../../assets/img/coins.png"))} />
-                        </View>
+                        {this._renderNbPiecesGagnees(isNiveauDejaFait)}
                     </View>
 
                     <View style={finishStyle.thirdView}>
@@ -222,10 +248,10 @@ class QuestionScreen extends React.Component {
                             <Text style={[appStyle.customFont, winStyle.titleShareButton]}>Partager le résultat</Text>
                         </TouchableOpacity>
                         {this._generateButtonNextLevel()}
-                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+                        <Button onPress={() => { this.props.navigation.navigate("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View> 
                 </View>
-            )
+            ); 
         }
     }
 

@@ -21,6 +21,9 @@ export default function dataReducer(state = initialState, action) {
             };
             return nextState;
 
+        case 'UPDATE_STATUS_ALREADYWON_LEVEL':
+            state.niveaux[action.value-1].alreadyWon = true;
+            return state;
         default:
             return state;
     }

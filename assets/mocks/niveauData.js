@@ -7,6 +7,7 @@ export const niveauData = [
         difficulte: 1,
         nbPieces: 50,
         locked: false,
+        alreadyWon: false ,
         questions: [
             {
                 numero: 1,
@@ -61,6 +62,7 @@ export const niveauData = [
         difficulte: 1,
         nbPieces: 50,
         locked: true,
+        alreadyWon: false,
         questions: [
             {
                 numero: 1,
