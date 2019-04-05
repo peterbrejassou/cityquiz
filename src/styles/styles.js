@@ -208,7 +208,8 @@ export const headerStyle = StyleSheet.create({
     },
 
     coinsView: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 
     coinsText: {
@@ -216,8 +217,8 @@ export const headerStyle = StyleSheet.create({
     },
 
     coinsImg: {
-        width: 20,
-        height: 20,
+        width: 15,
+        height: 15,
         marginLeft: 5
     },
 
@@ -503,15 +504,21 @@ export const finishStyle = StyleSheet.create({
         fontSize: 40,
         marginTop: 20
     },
-});
 
-
-export const winStyle = StyleSheet.create({
     pointsText: {
         color: greenColor,
         fontSize: 18
     },
-    
+
+    countBonnesReponses: {
+        color: whiteColor,
+        fontSize: 18,
+        marginTop: 10
+    }
+});
+
+
+export const winStyle = StyleSheet.create({    
     piecesView: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -584,6 +591,7 @@ export const profilStyle = StyleSheet.create({
 
     viewCoins: {
         flexDirection: 'row',
+        alignItems: 'center'
     },
 
     statsTitle: {

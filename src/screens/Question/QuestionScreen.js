@@ -22,7 +22,6 @@ class QuestionScreen extends React.Component {
             finishView: false,
             nextLevelAvailable: true
         }
-
     }
     
     _questionView(){
@@ -207,7 +206,8 @@ class QuestionScreen extends React.Component {
                     <View style={finishStyle.secondView}>
                         <Text style={[appStyle.customFont, finishStyle.msg]}>Dommage...</Text>
                         <Text style={[appStyle.customFont, looseStyle.text]}>Retente ta chance</Text>
-                        <Text style={[appStyle.customFont, winStyle.pointsText]}>{this.state.score > 0 ? "+ " + this.state.score + " points" : ""}</Text>
+                        <Text style={[appStyle.customFont, finishStyle.countBonnesReponses]}>{this.state.countBonnesReponses > 1 ? this.state.countBonnesReponses + " bonnes réponses sur " + this.state.questions.length : this.state.countBonnesReponses + " bonne réponse sur " + this.state.questions.length}</Text>
+                        <Text style={[appStyle.customFont, finishStyle.pointsText]}>{this.state.score > 0 ? "+ " + this.state.score + " points" : ""}</Text>
                     </View>
                     
                     <View style={finishStyle.thirdView}>
@@ -236,7 +236,8 @@ class QuestionScreen extends React.Component {
 
                     <View style={finishStyle.secondView}>
                         <Text style={[appStyle.customFont, finishStyle.msg]}>Bravo !</Text>
-                        <Text style={[appStyle.customFont, winStyle.pointsText]}>+ {this.state.score} points</Text>
+                        <Text style={[appStyle.customFont, finishStyle.countBonnesReponses]}>{this.state.countBonnesReponses > 1 ? this.state.countBonnesReponses + " bonnes réponses sur " + this.state.questions.length : this.state.countBonnesReponses + " bonne réponse sur " + this.state.questions.length}</Text>
+                        <Text style={[appStyle.customFont, finishStyle.pointsText]}>+ {this.state.score} points</Text>
                         {this._renderNbPiecesGagnees(isNiveauDejaFait)}
                     </View>
 
