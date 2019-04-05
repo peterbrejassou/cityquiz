@@ -37,7 +37,7 @@ const AppNavigator = createStackNavigator(
     Classement: { screen: ClassementScreen }
   },
   {
-    initialRouteName: 'ProposerLieu',
+    initialRouteName: 'Login',
     headerMode: 'none'
   }
 );

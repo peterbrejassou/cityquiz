@@ -710,6 +710,10 @@ export const proposerLieuStyle = StyleSheet.create({
         marginTop: 5,
     },
 
+    inputsMultiline: {
+        textAlignVertical: 'top'
+    },
+
     btnEnvoyer: {
         marginTop: 30,
         marginBottom: 30
