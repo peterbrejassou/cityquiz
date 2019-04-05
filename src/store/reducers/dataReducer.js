@@ -26,8 +26,14 @@ export default function dataReducer(state = initialState, action) {
             return state;
 
         case 'ADD_NEW_USER':
-            console.log(action.value);
             state.users.push(action.value);
+            return state;
+
+        case 'UPDATE_PASSWORD_USER':
+            var userRecupere = state.users.find((user) => {
+                return user === action.user
+            });
+            state.users[userRecupere.id - 1].password = action.newPassword;
             return state;
 
         default:
