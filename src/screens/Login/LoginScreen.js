@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavigationActions, StackActions } from 'react-navigation';
 import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import { appStyle, loginStyle, inputStyle, buttonStyle } from '../../styles/styles';
@@ -13,7 +14,8 @@ class LoginScreen extends React.Component {
         this.state = {
             usernameInput: null,
             passwordInput: null,
-            badPasswordBool: false
+            emptyLogs: false,
+            badLogs: false
         }
 
         if(this.props.users === undefined) {
@@ -23,29 +25,57 @@ class LoginScreen extends React.Component {
          this.props.dispatch({ type: 'INSERT_NIVEAU_DATA_FROM_MOCK', value: niveauData });
         }
     }
-    
+
     // Fonction permettant de vérifier si l'utilisateur est connu dans la BD et naviguer vers l'écran suivant si la connexion est réussie
     _checkLogin() {
+
+        this.setState({
+            emptyLogs: false,
+            badLogs: false
+        });
+
+        // On récupère la valeur des champs input
         let usernameInput = this.state.usernameInput;
         let passwordInput = this.state.passwordInput;
 
-        // Si un des deux champs est vide
-        if(usernameInput == null || passwordInput == null){
-            alert("Entrez vos identifiants avant de valider.");
-        }
+        // Si un des champs (ou les deux) est vide
+        if(usernameInput === null || passwordInput === null || usernameInput === "" || passwordInput === ""){
+            this.setState({ emptyLogs: true });
+        } 
+        // Si l'utilisateur n'est pas connecté (undefined) ou s'il était connecté et s'est déconnecté (prenom = "")
+        else if (this.props.userConnected === undefined || this.props.userConnected.prenom === "") {
+            // On parcours la liste des utilisateurs stockés dans le store
 
-        // Si l'utilisateur n'est pas connecté
-        if (this.props.userConnected === undefined || this.props.userConnected.prenom === "") {
-            this.props.users.map((user) => {
-                if (usernameInput == user.username && passwordInput == user.password) {
-                    this.setState({ badPasswordBool: true });
-                    this.props.dispatch({ type: 'LOG_USER', value: user });
-                    this.props.navigation.navigate('Menu');
-                } else if (!this.state.badPasswordBool) {
-                    alert("Mauvais identifiants");
-                    this.setState({badPasswordBool: true});
-                }
-            }); 
+            var userLog = this.props.users.find((user) => {
+                return user.username === usernameInput && user.password === passwordInput
+            });
+
+            if(userLog !== undefined){
+                // On ajoute l'utilisateur connecté dans le store
+                this.props.dispatch({ type: 'LOG_USER', value: userLog });
+
+                // On dirige vers le Menu en faisant un reset du stack de navigation (empecher l'utilisateur de revenir sur la page de log)
+                var resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'Menu' })],
+                });
+                this.props.navigation.dispatch(resetAction);
+            } else {
+                this.setState({badLogs: true});
+            }
+        // Si l'utilisateur était déjà connecté et revient sur la page de connexion par un autre moyen que la déconnexion
+        } else if (this.props.userConnected !== undefined){
+            // On vérifie que ses identifiants sont bons
+            if (usernameInput === this.props.userConnected.username && passwordInput === this.props.userConnected.password){
+                // On dirige vers le Menu en faisant un reset du stack de navigation (empecher l'utilisateur de revenir sur la page de log)
+                var resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'Menu' })],
+                });
+                this.props.navigation.dispatch(resetAction);
+            } else {
+                this.setState({ badLogs: true });
+            }   
         }
     }
 
@@ -66,6 +96,8 @@ class LoginScreen extends React.Component {
                         {<TouchableOpacity onPress={() => this.props.navigation.navigate('ForgotPassword')}>
                             <Text style={loginStyle.forgetPwd}>Mot de passe oublié ?</Text>
                         </TouchableOpacity>}
+                        <Text style={[loginStyle.badOrEmptyLogs, this.state.emptyLogs ? {display: 'flex'} : {display: 'none'}]}>Merci d'entrer vos identifiants avant de valider</Text>
+                        <Text style={[loginStyle.badOrEmptyLogs, this.state.badLogs ? { display: 'flex' } : { display: 'none' }]}>Les identifiants ne sont pas bons, merci de les vérifier</Text>
                     </View>
 
                     <View style={loginStyle.thirdSection}>
@@ -87,8 +119,8 @@ class LoginScreen extends React.Component {
 const mapStateToProps = (state) => {
     return {
         users: state.dataReducer.users,
-        niveaux: state.dataReducer.niveaux,
-        userConnected : state.userConnectedReducer.userConnected
+        userConnected: state.userConnectedReducer.userConnected,
+        niveaux: state.dataReducer.niveaux
     };
 }
 export default connect(mapStateToProps)(LoginScreen);

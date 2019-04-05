@@ -15,7 +15,6 @@ class MenuScreen extends React.Component {
     }
 
     render() {
-
         var items = menuList.map((item) => {
             return <MenuItem key={item.title} title={item.title} logo={item.logo} screen={item.screen} navigation={this.props.navigation}></MenuItem>
         });

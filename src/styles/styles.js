@@ -41,7 +41,7 @@ export const loginStyle = StyleSheet.create({
     },
 
     thirdSection: {
-        marginTop: 40
+        marginTop: 30
     },
 
     fourthSection: {
@@ -82,6 +82,13 @@ export const loginStyle = StyleSheet.create({
     },
 
     secondInput: {
+        marginTop: 20
+    },
+
+    badOrEmptyLogs: {
+        color: '#EF5350',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Bold',
         marginTop: 20
     }
 });
@@ -706,6 +713,23 @@ export const proposerLieuStyle = StyleSheet.create({
     btnEnvoyer: {
         marginTop: 30,
         marginBottom: 30
+    },
+
+    pickerView: {
+        borderWidth: 1,
+        borderColor: whiteColor,
+        borderRadius: 4,
+        marginTop: 5,
+    },
+
+    picker:{
+        color: whiteColor,
+        borderWidth: 1,
+        borderColor: 'red',
+    },
+
+    pickerItem: {
+        fontSize: 25,
     }
 }); 
 
@@ -823,7 +847,7 @@ export const parametresStyle = StyleSheet.create({
     deleteCompte: {
         color: '#EF5350',
         textAlign: 'center',
-        fontFamily: 'Montserrat-Bold',
+        fontFamily: 'Montserrat-Bold'
     },
 
     titleUpdate: {

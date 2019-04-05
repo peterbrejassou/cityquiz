@@ -24,6 +24,12 @@ export default function dataReducer(state = initialState, action) {
         case 'UPDATE_STATUS_ALREADYWON_LEVEL':
             state.niveaux[action.value-1].alreadyWon = true;
             return state;
+
+        case 'ADD_NEW_USER':
+            console.log(action.value);
+            state.users.push(action.value);
+            return state;
+
         default:
             return state;
     }

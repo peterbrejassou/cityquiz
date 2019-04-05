@@ -3,7 +3,6 @@ import {connect } from 'react-redux';
 import { View, Text, ScrollView, Image } from 'react-native';
 import Header from '../Header/Header';
 import { appStyle, classementStyle } from '../../styles/styles';
-import { userData } from '../../../assets/mocks/userData';
 
 class ClassementScreen extends React.Component {
 
@@ -12,8 +11,8 @@ class ClassementScreen extends React.Component {
     }
 
     render() {
-        var usersTries = this.props.users.sort((a, b) => (a.nbPoints < b.nbPoints) ? 1 : -1)
-        console.log(usersTries);
+        // On trie le tableau en nbPoints décroissants
+        this.props.users.sort((a, b) => (a.nbPoints < b.nbPoints) ? 1 : -1);
 
         var users = this.props.users.map((user, index) => {
             return(
