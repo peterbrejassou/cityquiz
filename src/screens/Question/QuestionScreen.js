@@ -195,6 +195,7 @@ class QuestionScreen extends React.Component {
         this.state.niveauActuel.questions.forEach((q) => {
             scoreMinimum += q.valeur;
         });
+        scoreMinimum /= 2;
 
         if (this.state.score < scoreMinimum){
             return(
