@@ -8,7 +8,7 @@ export default class MenuItem extends React.Component {
         return (
             <View style={menuItemStyle.itemView}>
                 <TouchableOpacity 
-                    onPress={() => {this.props.navigation.navigate(this.props.screen)}} 
+                    onPress={() => { this.props.navigation.push(this.props.screen)}} 
                     style={{flexDirection: 'row'}}>
 
                     <Image source={this.props.logo} style={menuItemStyle.icon} />

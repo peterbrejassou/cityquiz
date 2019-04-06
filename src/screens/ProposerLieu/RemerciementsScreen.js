@@ -17,7 +17,7 @@ class RemerciementsScreen extends React.Component {
     _recompenseUserAndNavigate(){
         this.props.dispatch({ type: 'UPDATE_POINTS_USER', value: this.state.pointsGagnes });
         this.props.dispatch({ type: 'UPDATE_PIECES_USER', value: this.state.piecesGagnees });
-        this.props.navigation.navigate("Menu");
+        this.props.navigation.push("Menu");
     }
 
     render() {

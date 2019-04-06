@@ -93,7 +93,7 @@ class LoginScreen extends React.Component {
                         <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(usernameInput) => this.setState({ usernameInput })} onSubmitEditing={() => { this.passwordTextInput.focus(); }} />
                         <Text style={[appStyle.customFont, loginStyle.inputTitles, loginStyle.secondInput]}>Mot de passe</Text>
                         <TextInput style={[appStyle.customFont, inputStyle.input]} autoCapitalize="none" secureTextEntry={true} onChangeText={(passwordInput) => this.setState({ passwordInput })} ref={(input) => { this.passwordTextInput = input; }} onSubmitEditing={() => this._checkLogin()}  />
-                        {<TouchableOpacity onPress={() => this.props.navigation.navigate('ForgotPassword')}>
+                        {<TouchableOpacity onPress={() => this.props.navigation.push('ForgotPassword')}>
                             <Text style={loginStyle.forgetPwd}>Mot de passe oublié ?</Text>
                         </TouchableOpacity>}
                         <Text style={[loginStyle.badOrEmptyLogs, this.state.emptyLogs ? {display: 'flex'} : {display: 'none'}]}>Merci d'entrer vos identifiants avant de valider</Text>
@@ -106,7 +106,7 @@ class LoginScreen extends React.Component {
 
                     <TouchableOpacity 
                         style={loginStyle.fourthSection}
-                        onPress={() => { this.props.navigation.navigate('Inscription') }}>
+                        onPress={() => { this.props.navigation.push('Inscription') }}>
                         <Text style={[appStyle.customFont, loginStyle.register]}>Pas encore de compte ? </Text>
                         <Text style={[appStyle.customFont, loginStyle.register, loginStyle.colorRegister]}>Inscrivez-vous !</Text>
                     </TouchableOpacity>

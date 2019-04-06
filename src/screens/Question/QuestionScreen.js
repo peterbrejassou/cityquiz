@@ -219,7 +219,7 @@ class QuestionScreen extends React.Component {
                     
                     <View style={finishStyle.thirdView}>
                         <Button onPress={() => { this.props.navigation.push("Question", { niveau: this.state.niveauActuel }) }} title="Rejouer" buttonStyle={buttonStyle.connexion} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
-                        <Button onPress={() => { this.props.navigation.navigate("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View>                  
                 </View>
             );
@@ -256,7 +256,7 @@ class QuestionScreen extends React.Component {
                             <Text style={[appStyle.customFont, winStyle.titleShareButton]}>Partager le résultat</Text>
                         </TouchableOpacity>
                         {this._generateButtonNextLevel()}
-                        <Button onPress={() => { this.props.navigation.navigate("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+                        <Button onPress={() => { this.props.navigation.push("Menu") }} title="Retour au menu" buttonStyle={[buttonStyle.connexion, looseStyle.buttonNotFirst]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View> 
                 </View>
             ); 

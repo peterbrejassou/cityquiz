@@ -22,7 +22,7 @@ export default class CardNiveau extends React.Component {
           <Text style={[appStyle.customFont, cardNiveauStyle.whiteText]}>{this.props.niveau.difficulte}</Text>
         </View>
         <View style={cardNiveauStyle.buttonView}>
-          <Button onPress={() => { this.props.navigation.navigate('Question', { niveau: this.props.niveau }) }} title="Démarrer" buttonStyle={cardNiveauStyle.button} titleStyle={[appStyle.customFont, cardNiveauStyle.titleButton]} />
+          <Button onPress={() => { this.props.navigation.push('Question', { niveau: this.props.niveau }) }} title="Démarrer" buttonStyle={cardNiveauStyle.button} titleStyle={[appStyle.customFont, cardNiveauStyle.titleButton]} />
         </View>
       </View>
     );

@@ -226,7 +226,7 @@ class ProposerLieuScreen extends React.Component {
                     this.props.dispatch({ type: 'ADD_NEW_NIVEAU', value: newNiveau });
                 }
                 // On redirige l'utilisateur vers la page de remerciements
-                this.props.navigation.navigate("Remerciements");
+                this.props.navigation.push("Remerciements");
             } else {
                 console.log("pas validé");
             }

@@ -15,7 +15,7 @@ class MenuScreen extends React.Component {
 
     _deconnexion(){      
         this.props.dispatch({ type: 'DELOG_USER'});
-        this.props.navigation.navigate('Login', {deconnexion: true});
+        this.props.navigation.push('Login', {deconnexion: true});
     }
 
     render() {
@@ -35,7 +35,7 @@ class MenuScreen extends React.Component {
 
                     <View style={menuStyle.secondSection}>
                         <Image source={this.props.userConnected.photo } style={menuStyle.imgUser} />
-                        <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
+                        <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 28 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
                         <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@{this.props.userConnected.username}</Text>
                     </View>
 
@@ -45,7 +45,7 @@ class MenuScreen extends React.Component {
                 </View>
 
                 <View style={menuStyle.fourthSection}>
-                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => this.props.navigation.navigate('Parametres')}>
+                    <TouchableOpacity style={menuStyle.bottomButtons} onPress={() => this.props.navigation.push('Parametres')}>
                         <Image
                             style={menuStyle.bottomLogos}
                             source={require(imgPath + 'parametres.png')}

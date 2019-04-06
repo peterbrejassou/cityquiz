@@ -44,7 +44,7 @@ class ForgotPasswordScreen extends React.Component {
 
                 // On affiche le nouveau mot de passe à l'utilisateur
                 alert("Votre nouveau mot de passe est : " + randomPassword + ". Vous pouvez le changer depuis les paramètres de l'application.");
-                this.props.navigation.navigate('Login');
+                this.props.navigation.push('Login');
             } else {
                 this.setState({ isEmailUnknown: true });
             }

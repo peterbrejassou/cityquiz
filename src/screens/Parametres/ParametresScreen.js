@@ -44,17 +44,17 @@ export default class ParametresScreen extends React.Component {
                     <Text style={[appStyle.customFont, parametresStyle.titleSection]}>Compte</Text>
 
                     <View>
-                        <TouchableOpacity style={parametresStyle.buttons} onPress={() => this.props.navigation.navigate('UpdateProfil')}>
+                        <TouchableOpacity style={parametresStyle.buttons} onPress={() => this.props.navigation.push('UpdateProfil')}>
                             <Image style={parametresStyle.logoButtons}source={require('../../../assets/img/profil.png')}/>
                             <Text style={parametresStyle.textButton}>Modifier le profil</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={parametresStyle.buttons} onPress={() => this.props.navigation.navigate('UpdateEmail')}>
+                        <TouchableOpacity style={parametresStyle.buttons} onPress={() => this.props.navigation.push('UpdateEmail')}>
                             <Image style={parametresStyle.logoButtons} source={require('../../../assets/img/mail.png')} />
                             <Text style={parametresStyle.textButton}>Modifier l'adresse email</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={parametresStyle.buttons} onPress={() => this.props.navigation.navigate('UpdatePassword')}>
+                        <TouchableOpacity style={parametresStyle.buttons} onPress={() => this.props.navigation.push('UpdatePassword')}>
                             <Image style={parametresStyle.logoButtons} source={require('../../../assets/img/key.png')} />
                             <Text style={parametresStyle.textButton}>Modifier le mot de passe</Text>
                         </TouchableOpacity>

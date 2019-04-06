@@ -127,7 +127,7 @@ export const menuStyle = StyleSheet.create({
     },
 
     thirdSection: {
-        marginTop: 82
+        marginTop: 65
     },
 
     fourthSection: {

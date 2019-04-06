@@ -54,12 +54,13 @@ class UpdateProfilScreen extends React.Component {
             prenom: this.state.prenomUser 
         });
         
+        // On relog l'utilisateur pour que userConnected prenne les infos du même objet dans users
         this.props.dispatch({ type: 'LOG_USER', value: this.props.users[this.props.userConnected.id - 1]});
+        // On redirige vers le menu
         this.props.navigation.push('Menu');
     }
 
     render() {
-        
         return (
             <View style={[appStyle.body, appStyle.padding]}>
                 <HeaderBack title="Paramètres" navigation={this.props.navigation} />

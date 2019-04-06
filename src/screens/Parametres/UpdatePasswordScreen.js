@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 import HeaderBack from '../Header/HeaderBack';
 import { appStyle, inputStyle, loginStyle, buttonStyle, parametresStyle } from '../../styles/styles';
 
-export default class UpdatePasswordScreen extends React.Component {
+class UpdatePasswordScreen extends React.Component {
     render() {
         return (
             <View style={[appStyle.body, appStyle.padding]}>
@@ -30,3 +31,10 @@ export default class UpdatePasswordScreen extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userConnected: state.userConnectedReducer.userConnected
+    };
+}
+export default connect(mapStateToProps)(UpdatePasswordScreen);

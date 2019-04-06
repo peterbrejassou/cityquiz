@@ -18,7 +18,7 @@ export default class HeaderHelp extends React.Component {
     render() {
         return (
             <View style={headerStyle.mainView}>
-                <TouchableOpacity onPress={() => { this.props.navigation.navigate('Menu') }}>
+                <TouchableOpacity onPress={() => { this.props.navigation.push('Menu') }}>
                     <Image style={headerStyle.btnMenu} source={require('../../../assets/img/menu.png')} />
                 </TouchableOpacity>
                 

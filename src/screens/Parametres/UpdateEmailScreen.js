@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 import HeaderBack from '../Header/HeaderBack';
 import { appStyle, inputStyle, loginStyle, buttonStyle, parametresStyle } from '../../styles/styles';
 
-export default class UpdateEmailScreen extends React.Component {
+class UpdateEmailScreen extends React.Component {
     render() {
         return (
             <View style={[appStyle.body, appStyle.padding]}>
@@ -27,3 +28,11 @@ export default class UpdateEmailScreen extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        users: state.dataReducer.users,
+        userConnected: state.userConnectedReducer.userConnected
+    };
+}
+export default connect(mapStateToProps)(UpdateEmailScreen);
