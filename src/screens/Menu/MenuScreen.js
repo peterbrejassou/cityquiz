@@ -13,6 +13,14 @@ class MenuScreen extends React.Component {
         super(props);
     }
 
+    _displayImageAfterTypeCheck() {
+        if (typeof (this.props.userConnected.photo) == "number") {
+            return <Image style={menuStyle.imgUser} source={this.props.userConnected.photo} />
+        } else if (typeof (this.props.userConnected.photo) == "string") {
+            return <Image style={menuStyle.imgUser} source={{ uri: this.props.userConnected.photo }} />;
+        }
+    }
+
     _deconnexion(){      
         this.props.dispatch({ type: 'DELOG_USER'});
         this.props.navigation.push('Login', {deconnexion: true});
@@ -34,7 +42,7 @@ class MenuScreen extends React.Component {
                     </View>
 
                     <View style={menuStyle.secondSection}>
-                        <Image source={this.props.userConnected.photo } style={menuStyle.imgUser} />
+                        {this._displayImageAfterTypeCheck()}
                         <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 28 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
                         <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@{this.props.userConnected.username}</Text>
                     </View>

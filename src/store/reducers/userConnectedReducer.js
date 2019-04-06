@@ -23,6 +23,13 @@ export default function userConnectedReducer(state = initialState, action) {
             state.userConnected.nbPieces += action.value;
             return state;
 
+        case 'UPDATE_PROFILE_USER':
+            state.userConnected.photo = action.photo;
+            state.userConnected.username = action.username;
+            state.userConnected.nom = action.nom;
+            state.userConnected.prenom = action.prenom;
+            return state;
+
         default:
             return state;
     }

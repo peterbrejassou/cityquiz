@@ -10,7 +10,16 @@ class ClassementScreen extends React.Component {
         super(props);
     }
 
+    _displayImageAfterTypeCheck(photo) {
+        if (typeof (photo) == "number") {
+            return <Image style={classementStyle.img} source={photo} />
+        } else if (typeof (photo) == "string") {
+            return <Image style={classementStyle.img} source={{ uri: photo }} />;
+        }
+    }
+
     render() {
+        console.log(this.props.users);
         // On trie le tableau en nbPoints décroissants
         this.props.users.sort((a, b) => (a.nbPoints < b.nbPoints) ? 1 : -1);
 
@@ -18,7 +27,7 @@ class ClassementScreen extends React.Component {
             return(
                 <View key={user.id} style={[classementStyle.subView, this.props.userConnected === user ? classementStyle.greenView : null ]}>
                     <Text style={[appStyle.customFont, classementStyle.number]}>{index+1}</Text>
-                    <Image style={classementStyle.img} source={user.photo} />
+                    {this._displayImageAfterTypeCheck(user.photo)}
                     <View style={classementStyle.viewNamePoints}>
                         <Text style={[appStyle.customFont, classementStyle.name]}>{user.prenom} {user.nom}</Text>
                         <Text style={[appStyle.customFont, classementStyle.points]}>{user.nbPoints} points</Text>

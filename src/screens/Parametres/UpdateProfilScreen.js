@@ -19,12 +19,10 @@ class UpdateProfilScreen extends React.Component {
     }
 
     _displayImageAfterTypeCheck() {
-        var ppUser = this.props.userConnected.photo;
-
-        if (typeof (ppUser) == "number") {
+        if (typeof (this.state.photoUser) == "number") {
             return <Image style={parametresStyle.photoUpdateProfil} source={this.state.photoUser} />;
-        } else if (typeof (ppUser) == "string") {
-            return <Image style={parametresStyle.photoUpdateProfil} source={{ uri: this.state.photoUser}} />;
+        } else if (typeof (this.state.photoUser) == "string") {
+            return <Image style={parametresStyle.photoUpdateProfil} source={{ uri: this.state.photoUser }} />;
         }
     }
 
@@ -34,12 +32,11 @@ class UpdateProfilScreen extends React.Component {
             takePhotoButtonTitle: 'Prendre une photo...',
             chooseFromLibraryButtonTitle: 'Choisir une image depuis la galerie...',
             cancelButtonTitle: 'Annuler',
-            noData: true,
-            cameraType: 'back'
+            noData: true
         };
         ImagePicker.showImagePicker(options, (response) => {
             if (response.uri) {
-                this.setState({ photoUser: response });
+                this.setState({ photoUser: response.uri });
             }
         });
     }
@@ -47,15 +44,12 @@ class UpdateProfilScreen extends React.Component {
     _updateProfileUser(){
         this.props.dispatch({ 
             type: 'UPDATE_PROFILE_USER',
-            user: this.props.userConnected, 
             photo: this.state.photoUser, 
             username: this.state.usernameUser,
             nom: this.state.nomUser, 
             prenom: this.state.prenomUser 
         });
-        
-        // On relog l'utilisateur pour que userConnected prenne les infos du même objet dans users
-        this.props.dispatch({ type: 'LOG_USER', value: this.props.users[this.props.userConnected.id - 1]});
+
         // On redirige vers le menu
         this.props.navigation.push('Menu');
     }
@@ -79,10 +73,10 @@ class UpdateProfilScreen extends React.Component {
                         <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} value={this.state.usernameUser} onChangeText={(usernameUser) => this.setState({ usernameUser })} onSubmitEditing={() => this.nomTextInput.focus()} />
 
                         <Text style={[appStyle.customFont, loginStyle.inputTitles, parametresStyle.inputTitle]}>Nom</Text>
-                        <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} value={this.state.nomUser} onChangeText={(nomUser) => this.setState({ nomUser })} ref={(input) => this.nomTextInput = input} onSubmitEditing={() => this.prenomTextInput.focus()} />
+                        <TextInput style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} value={this.state.nomUser} onChangeText={(nomUser) => this.setState({ nomUser })} ref={(input) => this.nomTextInput = input} onSubmitEditing={() => this.prenomTextInput.focus()} />
 
                         <Text style={[appStyle.customFont, loginStyle.inputTitles, parametresStyle.inputTitle]}>Prénom</Text>
-                        <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} value={this.state.prenomUser} onChangeText={(prenomUser) => this.setState({ prenomUser })} ref={(input) => this.prenomTextInput = input} onSubmitEditing={() => this._updateProfileUser()} />
+                        <TextInput style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} value={this.state.prenomUser} onChangeText={(prenomUser) => this.setState({ prenomUser })} ref={(input) => this.prenomTextInput = input} onSubmitEditing={() => this._updateProfileUser()} />
 
                         <Button onPress={() => this._updateProfileUser()} title="Valider" buttonStyle={[buttonStyle.connexion, parametresStyle.btnUpdate]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View>

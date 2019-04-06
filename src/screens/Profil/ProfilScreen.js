@@ -7,13 +7,26 @@ import { appStyle, profilStyle, menuStyle, headerStyle } from '../../styles/styl
 var imgPath = '../../../assets/img/';
 
 class ProfilScreen extends React.Component {
+
+    constructor(props){
+        super(props);
+    }
+
+    _displayImageAfterTypeCheck() {
+        if (typeof (this.props.userConnected.photo) == "number") {
+            return <Image style={menuStyle.imgUser} source={this.props.userConnected.photo} />
+        } else if (typeof (this.props.userConnected.photo) == "string") {
+            return <Image style={menuStyle.imgUser} source={{ uri: this.props.userConnected.photo }} />;
+        }
+    }
+
     render() {
         return (
             <View style={[appStyle.body, appStyle.padding, appStyle.mainView]}>
                 <Header title="Profil" navigation={this.props.navigation} />
 
                 <View style={profilStyle.firstSection}>
-                    <Image source={this.props.userConnected.photo} style={menuStyle.imgUser} />
+                    {this._displayImageAfterTypeCheck()}
                     <Text style={[appStyle.customFont, menuStyle.whiteText, { fontSize: 32 }]}>{this.props.userConnected.prenom} {this.props.userConnected.nom}</Text>
                     <Text style={[appStyle.customFont, menuStyle.whiteText, menuStyle.idUser]}>@{this.props.userConnected.username}</Text>
                 </View>
