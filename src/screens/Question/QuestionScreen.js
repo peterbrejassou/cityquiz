@@ -23,17 +23,37 @@ class QuestionScreen extends React.Component {
             nextLevelAvailable: true
         }
     }
+
+    _displayImageAfterTypeCheck(){
+        var imageQuestion = this.props.niveaux[this.state.niveauActuel.id - 1].questions[this.state.questionEnCours.numero - 1].image;
+
+        if (typeof(imageQuestion) == "number"){
+            return (
+                <Image
+                    style={questionStyle.img}
+                    source={imageQuestion}
+                />
+            );
+        } else if (typeof (imageQuestion) == "string"){
+            return (
+                <Image
+                    style={questionStyle.img}
+                    source={{uri: imageQuestion}}
+                />
+            );
+        }
+    }
     
     _questionView(){
+        
+
         return (
             <View style={[appStyle.body, appStyle.padding]}>
                 <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
-                    <Image
-                        style={questionStyle.img}
-                        source={this.state.questionEnCours.image}
-                    />
+                    {this._displayImageAfterTypeCheck()}
+                    
                     <Text style={[appStyle.customFont, questionStyle.intitule]}>{this.state.questionEnCours.intitule}</Text>
 
                     <View style={questionStyle.buttonsView}>
@@ -97,10 +117,7 @@ class QuestionScreen extends React.Component {
                 <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
-                    <Image
-                        style={questionStyle.img}
-                        source={this.state.questionEnCours.image}
-                    />
+                    {this._displayImageAfterTypeCheck()}
                     <Text style={[appStyle.customFont, questionStyle.intitule]}>{this.state.questionEnCours.intitule}</Text>
                 </View>
 
@@ -129,10 +146,7 @@ class QuestionScreen extends React.Component {
                 <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
 
                 <View style={questionStyle.questionView}>
-                    <Image
-                        style={questionStyle.img}
-                        source={this.state.questionEnCours.image}
-                    />
+                    {this._displayImageAfterTypeCheck()}
                     <Text style={[appStyle.customFont, questionStyle.intitule]}>{this.state.questionEnCours.intitule}</Text>
                 </View>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, Picker } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, Picker, ImageBackground } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 import { Button } from 'react-native-elements';
 import HeaderHelp from '../Header/HeaderHelp';
 import { appStyle, loginStyle, inputStyle, proposerLieuStyle, buttonStyle } from '../../styles/styles';
@@ -10,6 +11,7 @@ class ProposerLieuScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            image: null,
             villeInput: null,
             newVilleInput: null,
             difficulteInput: null,
@@ -34,6 +36,22 @@ class ProposerLieuScreen extends React.Component {
             isIndiceInputFill: true,
             isDescriptionInputFill: true
         }
+    }
+
+    _addImageNiveau(){
+        const options = {
+            title: 'Ajouter une image',
+            takePhotoButtonTitle: 'Prendre une photo...',
+            chooseFromLibraryButtonTitle: 'Choisir une image depuis la galerie...',
+            cancelButtonTitle: 'Annuler',
+            noData: true
+        };
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log(response);
+            if (response.uri) {
+                this.setState({ image: response });        
+            }
+        });
     }
 
     _createPickerItemsVilles(){
@@ -160,7 +178,7 @@ class ProposerLieuScreen extends React.Component {
                     var newLieu = {
                         numero: niveauRecupere.questions.length + 1,
                         intitule: this.state.questionInput,
-                        image: "",
+                        image: this.state.image.uri,
                         reponses: [
                             this.state.reponse1Input,
                             this.state.reponse2Input,
@@ -190,7 +208,7 @@ class ProposerLieuScreen extends React.Component {
                             {
                                 numero: 1,
                                 intitule: this.state.questionInput,
-                                image: "",
+                                image: this.state.image.uri,
                                 reponses: [
                                     this.state.reponse1Input,
                                     this.state.reponse2Input,
@@ -222,8 +240,18 @@ class ProposerLieuScreen extends React.Component {
                 <HeaderHelp title="Proposer un lieu" navigation={this.props.navigation} />
                 
                 <ScrollView showsVerticalScrollIndicator={false} style={proposerLieuStyle.mainView}>
-                    <TouchableOpacity style={proposerLieuStyle.addTouchable} onPress={() => {}}>
-                        <Image style={proposerLieuStyle.addLogo} source={require('../../../assets/img/add.png')} />
+                    <TouchableOpacity onPress={() => this._addImageNiveau()}>
+                        {!this.state.image && (
+                            <ImageBackground style={proposerLieuStyle.imageNiveau} imageStyle={{ borderRadius: 10 }} source={require('../../../assets/img/image_niveau_default.png')}>
+                                <Image style={proposerLieuStyle.addLogo} source={require('../../../assets/img/add.png')} />
+                            </ImageBackground>
+                        )}
+                        
+                        {this.state.image && (
+                            <ImageBackground style={proposerLieuStyle.imageNiveau} imageStyle={{ borderRadius: 10 }} source={{ uri: this.state.image.uri }}>
+                                <Image style={proposerLieuStyle.editLogo} source={require('../../../assets/img/edit.png')} />
+                            </ImageBackground>
+                        )}
                     </TouchableOpacity>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Ville concernée</Text>

@@ -689,18 +689,25 @@ export const proposerLieuStyle = StyleSheet.create({
     mainView: {
         marginTop: 30
     },
-    
-    addTouchable: {
-        backgroundColor: '#FFFFFF80',
-        borderRadius: 10,
+
+    imageNiveau: {
         height: 180,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
 
     addLogo: {
         width: 35,
         height: 35
+    },
+
+    editLogo: {
+        width: 35,
+        height: 35,
+        borderRadius: 20,
+        position: 'absolute',
+        top: 10,
+        left: 10
     },
 
     inputsTitle: {
