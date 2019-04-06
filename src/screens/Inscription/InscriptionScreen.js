@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationActions, StackActions } from 'react-navigation';
-import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TextInput } from 'react-native';
+import HeaderBack from '../Header/HeaderBack';
 import { Button, Image } from 'react-native-elements';
-import { appStyle, loginStyle, inputStyle, buttonStyle, forgotPasswordStyle } from '../../styles/styles';
+import { appStyle, loginStyle, inputStyle, buttonStyle, forgotPasswordStyle, headerStyle } from '../../styles/styles';
 
 class InscriptionScreen extends React.Component {
 
@@ -70,39 +71,37 @@ class InscriptionScreen extends React.Component {
 
     render() {
         return (
-            <View style={appStyle.body}>
-                <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={forgotPasswordStyle.header}>
-                    <Image style={appStyle.backLogo} source={require('../../../assets/img/back.png')} />
-                </TouchableOpacity>
+            <View style={[appStyle.body, appStyle.padding]}>
+                <HeaderBack title="" navigation={this.props.navigation} />
 
-                <ScrollView>
-                    <View style={[appStyle.padding, appStyle.mainView]}>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={headerStyle.scrollView}>
+                    <View style={appStyle.mainView}>
                         <View style={forgotPasswordStyle.firstSection}>
                             <Image source={require('../../../assets/img/logoApp.png')} style={{ width: 120, height: 103 }} />
                             <Text style={[appStyle.customFont, loginStyle.title]}>City Quiz</Text>
                             <Text style={[appStyle.customFont, forgotPasswordStyle.title]}>Bienvenue !</Text>
                         </View>
 
-                        <ScrollView style={forgotPasswordStyle.secondSection}>
+                        <ScrollView style={forgotPasswordStyle.secondSection} showsVerticalScrollIndicator={false} >
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Nom d'utilisateur</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(usernameInput) => this.setState({ usernameInput })} />
+                            <TextInput autoCapitalize="none" autoComplete="username" style={[appStyle.customFont, inputStyle.input]} onChangeText={(usernameInput) => this.setState({ usernameInput })} onSubmitEditing={() => { this.emailTextInput.focus(); }} />
 
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Adresse email</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(emailInput) => this.setState({ emailInput })} />
+                            <TextInput autoCapitalize="none" keyboardType="email-address" style={[appStyle.customFont, inputStyle.input]} onChangeText={(emailInput) => this.setState({ emailInput })} ref={(input) => { this.emailTextInput = input; }} onSubmitEditing={() => { this.passwordTextInput.focus(); }} />
                             
                             <Text style={[loginStyle.badOrEmptyLogs, !this.state.isEmailGoodFormat ? { display: 'flex' } : { display: 'none' }]}>L'adresse email n'est pas au bon format</Text>
 
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Mot de passe</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} secureTextEntry={true} onChangeText={(passwordInput) => this.setState({ passwordInput })} />
+                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} secureTextEntry={true} onChangeText={(passwordInput) => this.setState({ passwordInput })} ref={(input) => { this.passwordTextInput = input; }} onSubmitEditing={() => { this.confirmPasswordTextInput.focus(); }} />
 
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Confirmation du mot de passe</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} secureTextEntry={true} onChangeText={(passwordConfirmInput) => this.setState({ passwordConfirmInput })} />
+                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} secureTextEntry={true} onChangeText={(passwordConfirmInput) => this.setState({ passwordConfirmInput })} ref={(input) => { this.confirmPasswordTextInput = input; }} onSubmitEditing={() => { this.nomTextInput.focus(); }} />
                         
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Nom</Text>
-                            <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(nomInput) => this.setState({ nomInput })} />
+                            <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(nomInput) => this.setState({ nomInput })} ref={(input) => { this.nomTextInput = input; }} onSubmitEditing={() => { this.prenomTextInput.focus(); }} />
 
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Prénom</Text>
-                            <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(prenomInput) => this.setState({ prenomInput })} />
+                            <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(prenomInput) => this.setState({ prenomInput })} ref={(input) => { this.prenomTextInput = input; }} onSubmitEditing={() => { this._addNewUser() }} />
 
                             <Text style={[loginStyle.badOrEmptyLogs, this.state.isfieldEmpty ? {display: 'flex'} : {display: 'none'}]}>Des champs sont vides</Text>
                             <Text style={[loginStyle.badOrEmptyLogs, !this.state.isPasswordsMatching ? {display: 'flex'} : {display: 'none'}]}>Les mots de passes ne correspondent pas</Text>

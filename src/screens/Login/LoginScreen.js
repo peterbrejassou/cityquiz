@@ -90,9 +90,9 @@ class LoginScreen extends React.Component {
 
                     <View style={loginStyle.secondSection}>
                         <Text style={[appStyle.customFont, loginStyle.inputTitles]}>Nom d'utilisateur</Text>
-                        <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(usernameInput) => this.setState({ usernameInput })} />
+                        <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(usernameInput) => this.setState({ usernameInput })} onSubmitEditing={() => { this.passwordTextInput.focus(); }} />
                         <Text style={[appStyle.customFont, loginStyle.inputTitles, loginStyle.secondInput]}>Mot de passe</Text>
-                        <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} secureTextEntry={true} onChangeText={(passwordInput) => this.setState({ passwordInput })} onSubmitEditing={() => this._checkLogin() } />
+                        <TextInput style={[appStyle.customFont, inputStyle.input]} autoCapitalize="none" secureTextEntry={true} onChangeText={(passwordInput) => this.setState({ passwordInput })} ref={(input) => { this.passwordTextInput = input; }} onSubmitEditing={() => this._checkLogin()}  />
                         {<TouchableOpacity onPress={() => this.props.navigation.navigate('ForgotPassword')}>
                             <Text style={loginStyle.forgetPwd}>Mot de passe oublié ?</Text>
                         </TouchableOpacity>}

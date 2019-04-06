@@ -208,6 +208,11 @@ export const headerStyle = StyleSheet.create({
         height: 40
     },
 
+    btnBack: {
+        width: 30,
+        height: 30
+    },
+
     title: {
         color: whiteColor,
         fontSize: 20,
@@ -254,6 +259,10 @@ export const headerStyle = StyleSheet.create({
     help: {
         width: 35,
         height: 35
+    },
+
+    scrollView: {
+        marginTop: 25
     }
 });
 
@@ -893,15 +902,17 @@ export const parametresStyle = StyleSheet.create({
 
     photoUpdateProfil: {
         width: 120,
-        height: 120
+        height: 120,
+        borderRadius: 100
     },
 
     addUpdatePhotoProfil: {
-        width: 25,
-        height: 25,
+        width: 35,
+        height: 35,
+        borderRadius: 10,
         position: 'absolute',
-        top: '40%',
-        left: '29%'
+        top: 40,
+        left: 90
     }
 });
 

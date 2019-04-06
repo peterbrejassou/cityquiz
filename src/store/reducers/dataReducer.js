@@ -33,6 +33,14 @@ export default function dataReducer(state = initialState, action) {
             state.users[action.user.id - 1].password = action.newPassword;
             return state;
 
+        case 'UPDATE_PROFILE_USER':
+            console.log(action);
+            state.users[action.user.id - 1].photo = action.photo;
+            state.users[action.user.id - 1].username = action.username;
+            state.users[action.user.id - 1].nom = action.nom;
+            state.users[action.user.id - 1].prenom = action.prenom;
+            return state;
+
         case 'ADD_NEW_NIVEAU':
             state.niveaux.push(action.value);
             return state;

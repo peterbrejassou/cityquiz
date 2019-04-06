@@ -9,6 +9,10 @@ var imgPath = '../../../assets/img/';
 
 class MenuScreen extends React.Component {
 
+    constructor(props){
+        super(props);
+    }
+
     _deconnexion(){      
         this.props.dispatch({ type: 'DELOG_USER'});
         this.props.navigation.navigate('Login', {deconnexion: true});

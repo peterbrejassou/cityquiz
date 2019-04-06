@@ -47,7 +47,6 @@ class ProposerLieuScreen extends React.Component {
             noData: true
         };
         ImagePicker.showImagePicker(options, (response) => {
-            console.log(response);
             if (response.uri) {
                 this.setState({ image: response });        
             }
@@ -278,23 +277,23 @@ class ProposerLieuScreen extends React.Component {
                     </View>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Question</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(questionInput) => this.setState({ questionInput })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(questionInput) => this.setState({ questionInput })} onSubmitEditing={() => { this.reponse1TextInput.focus(); }} />
                     <Text style={[loginStyle.badOrEmptyLogs, this.state.isQuestionInputFill ? { display: 'none' } : { display: 'flex' }]}>Veuillez entrer la question</Text>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Réponse 1</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse1Input) => this.setState({ reponse1Input })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse1Input) => this.setState({ reponse1Input })} ref={(input) => { this.reponse1TextInput = input; }} onSubmitEditing={() => { this.reponse2TextInput.focus(); }} />
                     <Text style={[loginStyle.badOrEmptyLogs, this.state.isReponse1InputFill ? { display: 'none' } : { display: 'flex' }]}>Veuillez entrer la réponse 1</Text>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Réponse 2</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse2Input) => this.setState({ reponse2Input })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse2Input) => this.setState({ reponse2Input })} ref={(input) => { this.reponse2TextInput = input; }} onSubmitEditing={() => { this.reponse3TextInput.focus(); }} />
                     <Text style={[loginStyle.badOrEmptyLogs, this.state.isReponse2InputFill ? { display: 'none' } : { display: 'flex' }]}>Veuillez entrer la réponse 2</Text>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Réponse 3</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse3Input) => this.setState({ reponse3Input })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse3Input) => this.setState({ reponse3Input })} ref={(input) => { this.reponse3TextInput = input; }} onSubmitEditing={() => { this.reponse4TextInput.focus(); }} />
                     <Text style={[loginStyle.badOrEmptyLogs, this.state.isReponse3InputFill ? { display: 'none' } : { display: 'flex' }]}>Veuillez entrer la réponse 3</Text>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Réponse 4</Text>
-                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse4Input) => this.setState({ reponse4Input })} />
+                    <TextInput style={[appStyle.customFont, inputStyle.input]} onChangeText={(reponse4Input) => this.setState({ reponse4Input })} ref={(input) => { this.reponse4TextInput = input; }} />
                     <Text style={[loginStyle.badOrEmptyLogs, this.state.isReponse4InputFill ? { display: 'none' } : { display: 'flex' }]}>Veuillez entrer la réponse 4</Text>
 
                     <Text style={[appStyle.customFont, loginStyle.inputTitles, proposerLieuStyle.inputsTitle]}>Bonne réponse</Text>

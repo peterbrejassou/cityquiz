@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import HeaderBack from '../Header/HeaderBack';
+import { View, Text, ScrollView, TextInput } from 'react-native';
 import { Button, Image } from 'react-native-elements';
-import { appStyle, loginStyle, inputStyle, buttonStyle, forgotPasswordStyle } from '../../styles/styles';
+import { appStyle, loginStyle, inputStyle, buttonStyle, forgotPasswordStyle, headerStyle } from '../../styles/styles';
 
 class ForgotPasswordScreen extends React.Component {
 
@@ -52,12 +53,11 @@ class ForgotPasswordScreen extends React.Component {
 
     render() {
         return (
-            <View style={appStyle.body}>
-                <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={forgotPasswordStyle.header}>
-                    <Image style={appStyle.backLogo} source={require('../../../assets/img/back.png')} />
-                </TouchableOpacity>
-                <ScrollView contentContainerStyle={appStyle.body}>
-                    <View style={[appStyle.padding, appStyle.mainView]}>
+            <View style={[appStyle.body ,appStyle.padding]}>
+                <HeaderBack title="" navigation={this.props.navigation} />
+                
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[appStyle.body, headerStyle.scrollView]}>
+                    <View style={appStyle.mainView}>
                         <View style={forgotPasswordStyle.firstSection}>
                             <Image source={require('../../../assets/img/logoApp.png')} style={{ width: 120, height: 103 }} />
                             <Text style={[appStyle.customFont, loginStyle.title]}>City Quiz</Text>
@@ -67,7 +67,7 @@ class ForgotPasswordScreen extends React.Component {
                         <View style={forgotPasswordStyle.secondSection}>
                             <Text style={[appStyle.customFont, forgotPasswordStyle.text]}>Saisissez votre adresse mail ci-dessous, vous recevrez les instructions pour réinitialiser votre mot de passe.</Text>
                             <Text style={[appStyle.customFont, loginStyle.inputTitles, forgotPasswordStyle.input]}>Adresse email</Text>
-                            <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(emailInput) => this.setState({ emailInput })} />
+                            <TextInput autoCapitalize="none" keyboardType="email-address" style={[appStyle.customFont, inputStyle.input]} onChangeText={(emailInput) => this.setState({ emailInput })} onSubmitEditing={() => this._sendEmailResetPassword()} />
                             <Text style={[loginStyle.badOrEmptyLogs, !this.state.isEmailGoodFormat ? { display: 'flex' } : { display: 'none' }]}>L'adresse email n'est pas au bon format</Text>
                             <Text style={[loginStyle.badOrEmptyLogs, this.state.isEmailUnknown ? {display: 'flex'} : {display: 'none'}]}>L'adresse email n'existe pas dans la base de données</Text>
                         </View>

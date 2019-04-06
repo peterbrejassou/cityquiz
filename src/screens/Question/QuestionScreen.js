@@ -29,24 +29,16 @@ class QuestionScreen extends React.Component {
 
         if (typeof(imageQuestion) == "number"){
             return (
-                <Image
-                    style={questionStyle.img}
-                    source={imageQuestion}
-                />
+                <Image style={questionStyle.img} source={imageQuestion} />
             );
         } else if (typeof (imageQuestion) == "string"){
             return (
-                <Image
-                    style={questionStyle.img}
-                    source={{uri: imageQuestion}}
-                />
+                <Image style={questionStyle.img} source={{uri: imageQuestion}} />
             );
         }
     }
     
     _questionView(){
-        
-
         return (
             <View style={[appStyle.body, appStyle.padding]}>
                 <HeaderCoinsQuestion title={this.state.niveauActuel.nom} questionNumber={this.state.questionEnCours.numero} nbQuestionsTotal={this.state.questions.length} navigation={this.props.navigation} />
