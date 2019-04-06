@@ -18,6 +18,7 @@ import QuestionScreen from './src/screens/Question/QuestionScreen';
 import ProfilScreen from './src/screens/Profil/ProfilScreen';
 import BadgesScreen from './src/screens/Badges/BadgesScreen';
 import ClassementScreen from './src/screens/Classement/ClassementScreen';
+import RemerciementsScreen from "./src/screens/ProposerLieu/RemerciementsScreen";
 
 const AppNavigator = createStackNavigator(
   {
@@ -34,7 +35,8 @@ const AppNavigator = createStackNavigator(
     Question: { screen: QuestionScreen },
     Profil: { screen: ProfilScreen },
     Badges: { screen: BadgesScreen },
-    Classement: { screen: ClassementScreen }
+    Classement: { screen: ClassementScreen },
+    Remerciements: { screen: RemerciementsScreen }
   },
   {
     initialRouteName: 'Login',

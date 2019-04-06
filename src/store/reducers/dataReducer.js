@@ -30,10 +30,15 @@ export default function dataReducer(state = initialState, action) {
             return state;
 
         case 'UPDATE_PASSWORD_USER':
-            var userRecupere = state.users.find((user) => {
-                return user === action.user
-            });
-            state.users[userRecupere.id - 1].password = action.newPassword;
+            state.users[action.user.id - 1].password = action.newPassword;
+            return state;
+
+        case 'ADD_NEW_NIVEAU':
+            state.niveaux.push(action.value);
+            return state;
+
+        case 'ADD_NEW_LIEU':
+            state.niveaux[action.niveau.id - 1].questions.push(action.lieu);
             return state;
 
         default:

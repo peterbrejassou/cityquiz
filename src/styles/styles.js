@@ -533,7 +533,7 @@ export const winStyle = StyleSheet.create({
     },
 
     piecesText: {
-        color: 'yellow',
+        color: '#FFD949',
         fontSize: 18
     },
 
@@ -569,7 +569,8 @@ export const winStyle = StyleSheet.create({
 export const looseStyle = StyleSheet.create({
     text: {
         color: whiteColor,
-        fontSize: 18
+        fontSize: 18,
+        textAlign: 'center'
     },
 
     buttonNotFirst: {
