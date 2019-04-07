@@ -29,6 +29,14 @@ export default function userConnectedReducer(state = initialState, action) {
             state.userConnected.nom = action.nom;
             state.userConnected.prenom = action.prenom;
             return state;
+        
+        case 'UPDATE_EMAIL_USER':
+            state.userConnected.email = action.email;
+            return state;
+
+        case 'UPDATE_PASSWORD_CURENT_USER':
+            state.userConnected.password = action.password;
+            return state;
 
         default:
             return state;

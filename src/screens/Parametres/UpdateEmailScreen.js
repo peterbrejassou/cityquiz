@@ -6,6 +6,40 @@ import HeaderBack from '../Header/HeaderBack';
 import { appStyle, inputStyle, loginStyle, buttonStyle, parametresStyle } from '../../styles/styles';
 
 class UpdateEmailScreen extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            currentEmailUser: this.props.userConnected.email,
+            newEmailUser: null,
+            confirmNewEmailUser: null,
+            emailsMatch : true,
+            isEmailGoodFormat: true
+        }
+    }
+
+    _updateEmailUser() {
+        var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            
+        if(this.state.newEmailUser === this.state.confirmNewEmailUser){
+           // On efface le message d'erreur (cas utile lors d'un nouvel envoi)
+           this.setState({ emailsMatch: true });
+            // Si l'email match avec le regex
+            if (regexEmail.test(this.state.newEmailUser)){
+                // On efface le message d'erreur (cas utile lors d'un nouvel envoi)
+                this.setState({ isEmailGoodFormat: true });
+                // On envoi la nouvelle adresse au store
+                this.props.dispatch({ type: 'UPDATE_EMAIL_USER', email: this.state.newEmailUser });
+                // On redirige vers le menu
+                this.props.navigation.push('Menu');
+            } else {
+                this.setState({ isEmailGoodFormat: false });
+            }
+        } else{
+            this.setState({ emailsMatch: false });
+        }
+    }
+
     render() {
         return (
             <View style={[appStyle.body, appStyle.padding]}>
@@ -15,13 +49,19 @@ class UpdateEmailScreen extends React.Component {
                     <Text style={[appStyle.customFont, parametresStyle.titleUpdate]}>Mettre à jour l'adresse email</Text>
                     
                     <View style={parametresStyle.updateEmailView}>
-                        <Text style={[appStyle.customFont, loginStyle.inputTitles, parametresStyle.inputTitle]}>Adresse email</Text>
-                        <TextInput autoCapitalize="none" keyboardType="email-address" style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} onChangeText={(newMail) => this.setState({ newMail })} onSubmitEditing={() => this.confirmPasswordTextInput.focus()} />
+                        <Text style={[appStyle.customFont, loginStyle.inputTitles, parametresStyle.inputTitle]}>Adresse email actuelle</Text>
+                        <TextInput autoCapitalize="none" keyboardType="email-address" style={[appStyle.customFont, inputStyle.input, parametresStyle.input, parametresStyle.disableInput]} value={this.state.currentEmailUser} editable={false} />
+
+                        <Text style={[appStyle.customFont, loginStyle.inputTitles, parametresStyle.inputTitle]}>Nouvelle adresse email</Text>
+                        <TextInput autoCapitalize="none" keyboardType="email-address" style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} onChangeText={(newEmailUser) => this.setState({ newEmailUser })} onSubmitEditing={() => this.confirmMailTextInput.focus()} />
                         
                         <Text style={[appStyle.customFont, loginStyle.inputTitles, parametresStyle.inputTitle]}>Confirmation</Text>
-                        <TextInput autoCapitalize="none" keyboardType="email-address" style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} onChangeText={(newMailConfirm) => this.setState({ newMailConfirm })} ref={(input) => this.confirmPasswordTextInput = input} onSubmitEditing={() => {}} />
+                        <TextInput autoCapitalize="none" keyboardType="email-address" style={[appStyle.customFont, inputStyle.input, parametresStyle.input]} onChangeText={(confirmNewEmailUser) => this.setState({ confirmNewEmailUser })} ref={(input) => this.confirmMailTextInput = input} onSubmitEditing={() => this._updateEmailUser()} />
 
-                        <Button onPress={() => {}} title="Valider" buttonStyle={[buttonStyle.connexion, parametresStyle.btnUpdate]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
+                        <Text style={[loginStyle.badOrEmptyLogs, this.state.emailsMatch ? { display: 'none' } : { display: 'flex' }]}>Les adresses email ne correspondent pas</Text>
+                        <Text style={[loginStyle.badOrEmptyLogs, this.state.isEmailGoodFormat ? { display: 'none' } : { display: 'flex' }]}>L'adresse email n'est pas au bon format</Text>
+                        
+                        <Button onPress={() => this._updateEmailUser()} title="Valider" buttonStyle={[buttonStyle.connexion, parametresStyle.btnUpdate]} titleStyle={[appStyle.customFont, buttonStyle.titleButtonStyle]} />
                     </View>
                 </View>
             </View>
@@ -31,7 +71,6 @@ class UpdateEmailScreen extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.dataReducer.users,
         userConnected: state.userConnectedReducer.userConnected
     };
 }

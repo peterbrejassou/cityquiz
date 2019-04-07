@@ -88,7 +88,6 @@ class UpdateProfilScreen extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.dataReducer.users,
         userConnected: state.userConnectedReducer.userConnected
     };
 }

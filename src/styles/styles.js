@@ -913,6 +913,10 @@ export const parametresStyle = StyleSheet.create({
         position: 'absolute',
         top: 40,
         left: 90
+    },
+
+    disableInput: {
+        color: 'rgba(255, 255, 255, 0.6)'
     }
 });
 
