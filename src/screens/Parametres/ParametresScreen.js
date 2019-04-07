@@ -1,15 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity, Image, Switch } from 'react-native';
+import { Button } from 'react-native-elements';
 import Header from '../Header/Header';
-import { appStyle, parametresStyle } from '../../styles/styles';
+import { appStyle, parametresStyle, cardNiveauStyle } from '../../styles/styles';
 
-export default class ParametresScreen extends React.Component {
+class ParametresScreen extends React.Component {
 
     constructor(props){
         super(props)
         this.state = {
             notificationSwitchValue: false,
-            darkThemeSwitchValue: true
+            darkThemeSwitchValue: true,
+            popupDisplayed: false
         }
     }
 
@@ -19,6 +22,12 @@ export default class ParametresScreen extends React.Component {
 
     _toggleSwitchTheme() {
         this.setState({ darkThemeSwitchValue: !this.state.darkThemeSwitchValue });
+    }
+
+    _deleteUser(){
+        this.props.dispatch({ type: 'DELOG_USER' });
+        this.props.dispatch({ type: 'DELETE_USER', currentUser: this.props.userConnected });
+        this.props.navigation.navigate('Login');
     }
 
     render() {
@@ -61,10 +70,28 @@ export default class ParametresScreen extends React.Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={parametresStyle.thirdView}>
+                <TouchableOpacity style={parametresStyle.thirdView} onPress={() => this.setState({ popupDisplayed: true })}>
                     <Text style={parametresStyle.deleteCompte}>Supprimer le compte</Text>
                 </TouchableOpacity>
+
+
+                {this.state.popupDisplayed && ( 
+                    <View style={parametresStyle.popupMainView}>
+                        <Text style={[parametresStyle.titlePopup]}>Êtes-vous sûr de vouloir supprimer votre compte ?</Text>
+                        <View style={parametresStyle.popupButtons}>
+                            <Button onPress={() => this._deleteUser()} title="Oui" buttonStyle={parametresStyle.btnOui} titleStyle={[appStyle.customFont, cardNiveauStyle.titleButton]} />
+                            <Button onPress={() => this.setState({ popupDisplayed: false })} title="Non" buttonStyle={parametresStyle.btnNon} titleStyle={[appStyle.customFont, cardNiveauStyle.titleButton]} />
+                        </View>
+                    </View>
+                )}
             </View>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userConnected: state.userConnectedReducer.userConnected
+    };
+}
+export default connect(mapStateToProps)(ParametresScreen);

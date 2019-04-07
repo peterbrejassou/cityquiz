@@ -41,6 +41,10 @@ export default function dataReducer(state = initialState, action) {
             state.niveaux[action.niveau.id - 1].questions.push(action.lieu);
             return state;
 
+        case 'DELETE_USER':
+            state.users.splice(action.currentUser.id - 1, 1);
+            return state;
+
         default:
             return state;
     }

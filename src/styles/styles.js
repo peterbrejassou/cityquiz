@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const greenColor = '#66B96A';
 const grayColor = '#3A3E49';
 const whiteColor = '#FFFFFF';
+const redColor = '#EF5350';
 
 export const appStyle = StyleSheet.create({
     padding: {
@@ -86,7 +87,7 @@ export const loginStyle = StyleSheet.create({
     },
 
     badOrEmptyLogs: {
-        color: '#EF5350',
+        color: redColor,
         textAlign: 'center',
         fontFamily: 'Montserrat-Bold',
         marginTop: 20
@@ -866,7 +867,7 @@ export const parametresStyle = StyleSheet.create({
     },
 
     deleteCompte: {
-        color: '#EF5350',
+        color: redColor,
         textAlign: 'center',
         fontFamily: 'Montserrat-Bold'
     },
@@ -917,6 +918,44 @@ export const parametresStyle = StyleSheet.create({
 
     disableInput: {
         color: 'rgba(255, 255, 255, 0.6)'
+    },
+
+    popupMainView: {
+        backgroundColor: grayColor,
+        borderWidth: 1,
+        borderColor: whiteColor,
+        borderRadius: 10,
+        padding: 20,
+        position: 'absolute',
+        top: 300,
+        left: 40
+    },
+
+    titlePopup: {
+        color: whiteColor,
+        textAlign: 'center',
+        fontSize: 18,
+        fontFamily: 'Montserrat-Bold'
+    },
+
+    popupButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginTop: 20
+    },
+
+    btnOui: {
+        backgroundColor: greenColor,
+        borderRadius: 100,
+        paddingLeft: 30,
+        paddingRight: 30
+    },
+
+    btnNon: {
+        backgroundColor: redColor,
+        borderRadius: 100,
+        paddingLeft: 30,
+        paddingRight: 30
     }
 });
 
