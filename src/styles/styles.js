@@ -395,6 +395,7 @@ export const questionStyle = StyleSheet.create({
         color: whiteColor,
         marginTop: 10,
         fontSize: 20,
+        fontFamily: 'Montserrat-Bold',
     },
 
     indiceContent: {
@@ -987,9 +988,10 @@ export const forgotPasswordStyle = StyleSheet.create({
 
     input: {
         marginTop: 30,
-    }, 
+    },
 
     btnView: {
-        paddingBottom: 30
+        marginTop: 30,
+        paddingBottom: 60
     }
 });
