@@ -16,6 +16,7 @@ class ForgotPasswordScreen extends React.Component {
         }
     }
 
+    // Fonction d'envoi d'email pour réinitialiser le mot de passe (affiche un "alert" pour le moment)
     _sendEmailResetPassword(){
         // Création du regex pour vérifier le format de l'email saisi
         var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -25,13 +26,15 @@ class ForgotPasswordScreen extends React.Component {
         } else{
             this.setState({ isEmailGoodFormat: true });
             
+            // Récupération de l'utilisateur depuis le store users
             var userConcerned = this.props.users.find((user) => {
                 return user.email === this.state.emailInput
             });
 
+            // Si l'utilisateur n'existe pas dans la base
             if (userConcerned !== undefined) {
                 this.setState({ isEmailUnknown: false });
-
+                // Liste des caractères disponibles pour générer le mot de passe
                 var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
                 var randomPassword = "";
                 for (var i = 0; i < 8; i++) {

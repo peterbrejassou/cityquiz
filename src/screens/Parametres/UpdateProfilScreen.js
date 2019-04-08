@@ -18,14 +18,18 @@ class UpdateProfilScreen extends React.Component {
         }
     }
 
+    // Fonction d'affichage de l'image en fonction de son type (nécessite un require ou un uri)
     _displayImageAfterTypeCheck() {
+        // Si l'image est de type number (require)
         if (typeof (this.state.photoUser) == "number") {
             return <Image style={parametresStyle.photoUpdateProfil} source={this.state.photoUser} />;
+        // Si l'image est de type string (image importé avec uri)
         } else if (typeof (this.state.photoUser) == "string") {
             return <Image style={parametresStyle.photoUpdateProfil} source={{ uri: this.state.photoUser }} />;
         }
     }
 
+    // Fonction permettant de charger une image depuis l'appareil photo ou depuis la galerie
     _changePhotoUser() {
         const options = {
             title: 'Ajouter une image',
@@ -41,6 +45,7 @@ class UpdateProfilScreen extends React.Component {
         });
     }
 
+    // Fonction permettant de mettre à jour le profil de l'utilisateur (photo, username, nom, prenom)
     _updateProfileUser(){
         this.props.dispatch({ 
             type: 'UPDATE_PROFILE_USER',

@@ -38,6 +38,7 @@ class ProposerLieuScreen extends React.Component {
         }
     }
 
+    // Fonction permettant de charger une image depuis l'appareil photo ou depuis la galerie
     _addImageNiveau(){
         const options = {
             title: 'Ajouter une image',
@@ -53,6 +54,7 @@ class ProposerLieuScreen extends React.Component {
         });
     }
 
+    // Fontion permettant de créer les picker-items du picker "Choix de la ville"
     _createPickerItemsVilles(){
         var items = this.props.niveaux.map((niveau) => {
             return <Picker.Item key={niveau.id} label={niveau.nom} value={niveau.nom} />
@@ -68,8 +70,9 @@ class ProposerLieuScreen extends React.Component {
         );
     }
 
+    // Fonction de vérification du formulaire d'ajout d'une nouvelle ville
     _checkFormNewVilleValid() {
-        // Si l'ulisateur a sélectionne "nouvelle ville" dans le picker ville
+        // Si l'ulisateur a sélectionné "nouvelle ville" dans le picker ville
         if (this.state.villeInput === "add_new_city") {
             // Si le nom de la ville ou la difficulté n'ont pas été entrés
             if (this.state.newVilleInput === null || this.state.newVilleInput === "" || this.state.difficulteInput === 0) {
@@ -162,7 +165,7 @@ class ProposerLieuScreen extends React.Component {
                 this.setState({ isDescriptionInputFill: true });
             }
 
-            // Si tout est correct et bien rempli
+        // Si tout est correct et bien rempli
         } else {
             // Si le formulaire nouvelle ville est validé
             if (this.state.isNewVilleInputFill && this.state.isDescriptionInputFill) {
@@ -228,7 +231,7 @@ class ProposerLieuScreen extends React.Component {
                 // On redirige l'utilisateur vers la page de remerciements
                 this.props.navigation.push("Remerciements");
             } else {
-                console.log("pas validé");
+                console.log("Pas validé");
             }
         }
     }  

@@ -1,31 +1,33 @@
+var imgPath = '../../../assets/img/';
+
 export const menuList = [
     {
         title: "Jouer",
-        logo: require('../../../assets/img/jouer.png'),
+        logo: require(imgPath + 'jouer.png'),
         screen: "Jouer"
     },
 
     {
         title: "Mon profil",
-        logo: require('../../../assets/img/profil.png'),
+        logo: require(imgPath + 'profil.png'),
         screen: "Profil"
     },
 
     {
         title: "Mes badges",
-        logo: require('../../../assets/img/badge.png'),
+        logo: require(imgPath + 'badge.png'),
         screen: "Badges"
     },
 
     {
         title: "Classement",
-        logo: require('../../../assets/img/classement.png'),
+        logo: require(imgPath + 'classement.png'),
         screen: "Classement"
     },
 
     {
         title: "Proposer un lieu",
-        logo: require('../../../assets/img/add.png'),
+        logo: require(imgPath + 'add.png'),
         screen: "ProposerLieu"
     },
 ];

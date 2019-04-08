@@ -23,6 +23,7 @@ class InscriptionScreen extends React.Component {
         }
     }
 
+    // Fonction permettant d'ajouter un nouvel utilisateur
     _addNewUser(){
         // Si un des champs est vide
         if (this.state.usernameInput === null || this.state.usernameInput === "" || this.state.emailInput === null || this.state.emailInput === "" || this.state.passwordInput === null || this.state.passwordInput === "" || this.state.passwordConfirmInput === null || this.state.passwordConfirmInput === ""){

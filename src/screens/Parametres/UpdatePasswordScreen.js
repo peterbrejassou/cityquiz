@@ -18,9 +18,12 @@ class UpdatePasswordScreen extends React.Component {
         }
     }
 
+    // Fonction permettant de modifier le mot de passe de l'utilisateur
     _updatePasswordUser() {
+        // Si le mot de passe saisi correspond au mot de passe actuel de l'utilisateur
         if (this.state.currentPasswordUser === this.props.userConnected.password){
             this.setState({ isCurrentPasswordGood: true });
+            // Si les 2 champs password et confirmation sont égaux
             if (this.state.newPasswordUser === this.state.confirmNewPasswordUser){
                 // On efface le message d'erreur (cas utile lors d'un nouvel envoi)
                 this.setState({ passwordsMatch: true });

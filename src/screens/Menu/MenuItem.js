@@ -3,7 +3,6 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { appStyle, menuItemStyle } from '../../styles/styles';
 
 export default class MenuItem extends React.Component {
-
     render() {
         return (
             <View style={menuItemStyle.itemView}>

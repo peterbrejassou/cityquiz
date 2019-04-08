@@ -18,9 +18,11 @@ class LoginScreen extends React.Component {
             badLogs: false
         }
 
+        // Pour la 1e connexion, initialisation de la liste des utilisateurs
         if(this.props.users === undefined) {
             this.props.dispatch({ type: 'INSERT_USER_DATA_FROM_MOCK', value: userData });
         }
+        // Pour la 1e connexion, initialisation de la liste des niveaux
         if (this.props.niveaux === undefined) {
          this.props.dispatch({ type: 'INSERT_NIVEAU_DATA_FROM_MOCK', value: niveauData });
         }
@@ -28,7 +30,6 @@ class LoginScreen extends React.Component {
 
     // Fonction permettant de vérifier si l'utilisateur est connu dans la BD et naviguer vers l'écran suivant si la connexion est réussie
     _checkLogin() {
-
         this.setState({
             emptyLogs: false,
             badLogs: false
@@ -45,7 +46,6 @@ class LoginScreen extends React.Component {
         // Si l'utilisateur n'est pas connecté (undefined) ou s'il était connecté et s'est déconnecté (prenom = "")
         else if (this.props.userConnected === undefined || this.props.userConnected.prenom === "") {
             // On parcours la liste des utilisateurs stockés dans le store
-
             var userLog = this.props.users.find((user) => {
                 return user.username === usernameInput && user.password === passwordInput
             });
@@ -53,7 +53,6 @@ class LoginScreen extends React.Component {
             if(userLog !== undefined){
                 // On ajoute l'utilisateur connecté dans le store
                 this.props.dispatch({ type: 'LOG_USER', value: userLog });
-
                 // On dirige vers le Menu en faisant un reset du stack de navigation (empecher l'utilisateur de revenir sur la page de log)
                 var resetAction = StackActions.reset({
                     index: 0,

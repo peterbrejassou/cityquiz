@@ -13,20 +13,25 @@ class MenuScreen extends React.Component {
         super(props);
     }
 
+    // Fonction d'affichage de l'image en fonction de son type (nécessite un require ou un uri)
     _displayImageAfterTypeCheck() {
+        // Si l'image est de type number (require)
         if (typeof (this.props.userConnected.photo) == "number") {
             return <Image style={menuStyle.imgUser} source={this.props.userConnected.photo} />
+        // Si l'image est de type string (image importé avec uri)
         } else if (typeof (this.props.userConnected.photo) == "string") {
             return <Image style={menuStyle.imgUser} source={{ uri: this.props.userConnected.photo }} />;
         }
     }
 
+    // Fonction de déconnexion de l'utilisateur
     _deconnexion(){      
         this.props.dispatch({ type: 'DELOG_USER'});
-        this.props.navigation.push('Login', {deconnexion: true});
+        this.props.navigation.push('Login');
     }
 
     render() {
+        // Parcours de la liste des menu
         var items = menuList.map((item) => {
             return <MenuItem key={item.title} title={item.title} logo={item.logo} screen={item.screen} navigation={this.props.navigation}></MenuItem>
         });

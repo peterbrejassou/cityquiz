@@ -10,19 +10,22 @@ class ClassementScreen extends React.Component {
         super(props);
     }
 
+    // Fonction d'affichage de l'image en fonction de son type (nécessite un require ou un uri)
     _displayImageAfterTypeCheck(photo) {
+        // Si l'image est de type number (require)
         if (typeof (photo) == "number") {
             return <Image style={classementStyle.img} source={photo} />
+        // Si l'image est de type string (image importé avec uri)
         } else if (typeof (photo) == "string") {
             return <Image style={classementStyle.img} source={{ uri: photo }} />;
         }
     }
 
     render() {
-        console.log(this.props.users);
         // On trie le tableau en nbPoints décroissants
         this.props.users.sort((a, b) => (a.nbPoints < b.nbPoints) ? 1 : -1);
 
+        // On parcours le tableau d'utilisateur et pour chaque on l'affiche
         var users = this.props.users.map((user, index) => {
             return(
                 <View key={user.id} style={[classementStyle.subView, this.props.userConnected === user ? classementStyle.greenView : null ]}>

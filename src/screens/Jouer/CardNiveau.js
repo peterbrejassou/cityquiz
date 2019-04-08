@@ -4,7 +4,6 @@ import { Button } from 'react-native-elements';
 import { appStyle, cardNiveauStyle } from '../../styles/styles';
 
 export default class CardNiveau extends React.Component {
-
   constructor(props){
     super(props);
   }

@@ -16,14 +16,17 @@ class ParametresScreen extends React.Component {
         }
     }
 
+    // Fonction liée au switch button notifications
     _toggleSwitchNotification(){
         this.setState({ notificationSwitchValue: !this.state.notificationSwitchValue});
     }
 
+    // Fonction liée au switch button thème sombre
     _toggleSwitchTheme() {
         this.setState({ darkThemeSwitchValue: !this.state.darkThemeSwitchValue });
     }
 
+    // Fonction permettant de supprimer le compte d'un utilisateur
     _deleteUser(){
         this.props.dispatch({ type: 'DELOG_USER' });
         this.props.dispatch({ type: 'DELETE_USER', currentUser: this.props.userConnected });

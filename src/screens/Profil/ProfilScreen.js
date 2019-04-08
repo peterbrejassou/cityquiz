@@ -12,9 +12,12 @@ class ProfilScreen extends React.Component {
         super(props);
     }
 
+    // Fonction d'affichage de l'image en fonction de son type (nécessite un require ou un uri)
     _displayImageAfterTypeCheck() {
+        // Si l'image est de type number (require)
         if (typeof (this.props.userConnected.photo) == "number") {
             return <Image style={menuStyle.imgUser} source={this.props.userConnected.photo} />
+        // Si l'image est de type string (image importé avec uri)
         } else if (typeof (this.props.userConnected.photo) == "string") {
             return <Image style={menuStyle.imgUser} source={{ uri: this.props.userConnected.photo }} />;
         }

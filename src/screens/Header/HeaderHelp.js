@@ -11,6 +11,7 @@ export default class HeaderHelp extends React.Component {
         }
     }
 
+    // Fonction d'affichage de la popup d'aide "Règles de publication"
     _displayHelpScreen() {
         this.setState({ helpScreenDisplayed: !this.state.helpScreenDisplayed });
     }

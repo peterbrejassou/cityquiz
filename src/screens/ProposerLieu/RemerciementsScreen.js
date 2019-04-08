@@ -14,6 +14,7 @@ class RemerciementsScreen extends React.Component {
         }
     }
 
+    // Fonction de mise à jour des points et des pièces de l'utilisateur puis redirection vers le menu
     _recompenseUserAndNavigate(){
         this.props.dispatch({ type: 'UPDATE_POINTS_USER', value: this.state.pointsGagnes });
         this.props.dispatch({ type: 'UPDATE_PIECES_USER', value: this.state.piecesGagnees });
@@ -21,7 +22,6 @@ class RemerciementsScreen extends React.Component {
     }
 
     render() {
-        console.log(this.props.niveaux);
         return (
             <View style={[appStyle.body, appStyle.padding]}>
                 <View style={finishStyle.firstView}>

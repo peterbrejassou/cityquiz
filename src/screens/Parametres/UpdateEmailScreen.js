@@ -18,9 +18,12 @@ class UpdateEmailScreen extends React.Component {
         }
     }
 
+    // Fonction permettant de mettre à jour l'email de l'utilisateur
     _updateEmailUser() {
+        // On définit notre regex de référence mail
         var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             
+        // Si les 2 champs email et confirmation sont égaux
         if(this.state.newEmailUser === this.state.confirmNewEmailUser){
            // On efface le message d'erreur (cas utile lors d'un nouvel envoi)
            this.setState({ emailsMatch: true });

@@ -5,8 +5,10 @@ import { Image, Button } from 'react-native-elements';
 import HeaderCoinsQuestion from '../Header/HeaderCoinsQuestion';
 import { appStyle, questionStyle, buttonStyle, finishStyle, winStyle, looseStyle } from '../../styles/styles';
 
+var imgPath = '../../../assets/img/';
+
 class QuestionScreen extends React.Component {
- 
+
     constructor(props){
         super(props);
         this.state = {
@@ -24,13 +26,17 @@ class QuestionScreen extends React.Component {
         }
     }
 
+    // Fonction d'affichage de l'image en fonction de son type (nécessite un require ou un uri)
     _displayImageAfterTypeCheck(){
+        // On récupère l'image depuis le store
         var imageQuestion = this.props.niveaux[this.state.niveauActuel.id - 1].questions[this.state.questionEnCours.numero - 1].image;
 
+        // Si l'image est de type number (require)
         if (typeof(imageQuestion) == "number"){
             return (
                 <Image style={questionStyle.img} source={imageQuestion} />
             );
+        // Si l'image est de type string (image importé avec uri)
         } else if (typeof (imageQuestion) == "string"){
             return (
                 <Image style={questionStyle.img} source={{uri: imageQuestion}} />
@@ -38,6 +44,7 @@ class QuestionScreen extends React.Component {
         }
     }
     
+    // Fonction d'affichage de la question
     _questionView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
@@ -57,7 +64,7 @@ class QuestionScreen extends React.Component {
                     <TouchableOpacity
                         onPress={() => this._displayIndice()}
                         style={questionStyle.buttonIndice}>
-                        <Image source={require("../../../assets/img/loupe.png")} style={questionStyle.iconIndice} />
+                        <Image source={require(imgPath + "loupe.png")} style={questionStyle.iconIndice} />
                         <Text style={[appStyle.customFont, questionStyle.titleButtonIndice]}>Indice</Text>
                     </TouchableOpacity>
                 </View>
@@ -71,7 +78,7 @@ class QuestionScreen extends React.Component {
                         <TouchableOpacity
                             onPress={() => { this._displayIndice() }}
                             style={questionStyle.indiceArrowCloseView}>
-                            <Image source={require("../../../assets/img/arrow_down.png")} style={questionStyle.indiceArrowClose} />
+                            <Image source={require(imgPath + "arrow_down.png")} style={questionStyle.indiceArrowClose} />
                         </TouchableOpacity>
                     </View>
                     : null}
@@ -79,11 +86,13 @@ class QuestionScreen extends React.Component {
         );
     }
 
+    // Fonction d'affichage de l'indice
     _displayIndice() {
         // On affiche ou cache l'indice (inversion de la variable)
         this.setState({ indiceDisplayed: !this.state.indiceDisplayed });
     }
 
+    // Fonction de validation de la réponse saisie
     _valideReponse(index) {
         this.setState({ viewQuestion: false, reponseDonnee: index });
 
@@ -95,6 +104,7 @@ class QuestionScreen extends React.Component {
                 countBonnesReponses: this.state.countBonnesReponses + 1, 
                 answerIsGood: true 
             });
+            // On met à jour les points de l'utilisateur
             this.props.dispatch({ type: 'UPDATE_POINTS_USER', value: this.state.questionEnCours.valeur });
         // Si c'est la mauvaise réponse
         } else {
@@ -103,6 +113,7 @@ class QuestionScreen extends React.Component {
         }
     }
 
+    // Fonction d'affichage de la vue "Bonne réponse"
     _goodAnswerView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
@@ -115,7 +126,7 @@ class QuestionScreen extends React.Component {
 
                 <View style={questionStyle.reponses}>
                     <View style={questionStyle.bonneReponse}>
-                        <Image source={require('../../../assets/img/success.png')} style={questionStyle.logoReponse} />
+                        <Image source={require(imgPath + "success.png")} style={questionStyle.logoReponse} />
                         <Text style={[appStyle.customFont, questionStyle.titleBonneReponse]}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
                     </View>
                 </View>
@@ -131,7 +142,7 @@ class QuestionScreen extends React.Component {
         );
     }
 
-
+    // Fonction d'affichage de la vue "Mauvaise réponse"
     _badAnswerView(){
         return (
             <View style={[appStyle.body, appStyle.padding]}>
@@ -144,12 +155,12 @@ class QuestionScreen extends React.Component {
 
                 <View style={questionStyle.reponses}>
                     <View style={questionStyle.mauvaiseReponse}>
-                        <Image source={require('../../../assets/img/error.png')} style={questionStyle.logoReponse} />
+                        <Image source={require(imgPath + "error.png")} style={questionStyle.logoReponse} />
                         <Text style={[appStyle.customFont, questionStyle.titleMauvaiseReponse]}>{this.state.questionEnCours.reponses[this.state.reponseDonnee]}</Text>
                     </View>
 
                     <View style={questionStyle.bonneReponse}>
-                        <Image source={require('../../../assets/img/success.png')} style={questionStyle.logoReponse} />
+                        <Image source={require(imgPath + "success.png")} style={questionStyle.logoReponse} />
                         <Text style={[appStyle.customFont, questionStyle.titleBonneReponse]}>{this.state.questionEnCours.reponses[this.state.questionEnCours.bonneReponse]}</Text>
                     </View>
                 </View>
@@ -165,6 +176,7 @@ class QuestionScreen extends React.Component {
         );
     }
 
+    // Fonction passage à la prochaine question
     _nextQuestion(){
         if(this.state.questionEnCours.numero !== this.state.questions.length){
             this.setState({
@@ -176,6 +188,7 @@ class QuestionScreen extends React.Component {
         }
     }
 
+    // Fonction pour générer un bouton "Niveau suivant" (dans le cas où il existe)
     _generateButtonNextLevel(){
         // Si le niveau suivant est défini (l'id des niveaux commence à 1 dans les mock mais l'index du tablea niveaux commence à 0 donc on ne met pas -1)
         if (this.props.niveaux[this.state.niveauActuel.id] !== undefined) {
@@ -184,17 +197,19 @@ class QuestionScreen extends React.Component {
         }
     }
 
+    // Fonction d'affichage du nombre de pièces gagnées (restreint aux niveaux pas encore réalisés)
     _renderNbPiecesGagnees(isNiveauDejaFait){
         if (!isNiveauDejaFait){
             return (
                 <View style={winStyle.piecesView}>
                     <Text style={[appStyle.customFont, winStyle.piecesText]}>+ {this.state.niveauActuel.nbPieces}</Text>
-                    <Image style={winStyle.piecesImg} source={(require("../../../assets/img/coins.png"))} />
+                    <Image style={winStyle.piecesImg} source={(require(imgPath + "coins.png"))} />
                 </View>
             );
         }
     }
 
+    // Fonction d'affichage de la vue de récap de fin de niveau
     _finishView(){
         //Calcul du score minimum (= somme des points de chaque question / 2)
         var scoreMinimum = 0;
@@ -207,7 +222,7 @@ class QuestionScreen extends React.Component {
             return(
                 <View style={[appStyle.body, appStyle.padding]}>
                     <View style={finishStyle.firstView}>
-                        <Image source={require("../../../assets/img/sad.png")} style={finishStyle.img} />
+                        <Image source={require(imgPath + "sad.png")} style={finishStyle.img} />
                     </View>
                     
                     <View style={finishStyle.secondView}>
@@ -224,7 +239,7 @@ class QuestionScreen extends React.Component {
                 </View>
             );
         } else {
-            // On enregistre la valuer de alreadyWon avant de la changer pour le render en dessous
+            // On enregistre la valeur de alreadyWon avant de la changer pour le render en dessous
             var isNiveauDejaFait = this.props.niveaux[this.state.niveauActuel.id - 1].alreadyWon;
 
             // Si le niveau n'a pas déjà été remporté auparavant
@@ -238,7 +253,7 @@ class QuestionScreen extends React.Component {
             return(
                 <View style={[appStyle.body, appStyle.padding]}>
                     <View style={finishStyle.firstView}>
-                        <Image source={require("../../../assets/img/confetti.png")} style={finishStyle.img} />
+                        <Image source={require(imgPath + "confetti.png")} style={finishStyle.img} />
                     </View>
 
                     <View style={finishStyle.secondView}>
@@ -252,7 +267,7 @@ class QuestionScreen extends React.Component {
                         <TouchableOpacity
                         onPress={() => { alert("Share") }}
                         style={winStyle.shareButton}>
-                            <Image source={require("../../../assets/img/share.png")} style={winStyle.shareButtonImg} />
+                            <Image source={require(imgPath + "share.png")} style={winStyle.shareButtonImg} />
                             <Text style={[appStyle.customFont, winStyle.titleShareButton]}>Partager le résultat</Text>
                         </TouchableOpacity>
                         {this._generateButtonNextLevel()}
@@ -262,7 +277,6 @@ class QuestionScreen extends React.Component {
             ); 
         }
     }
-
 
     render() {
         if (this.state.viewQuestion){
