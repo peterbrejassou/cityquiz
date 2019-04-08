@@ -270,6 +270,18 @@ export const headerStyle = StyleSheet.create({
 export const jouerStyle = StyleSheet.create({
     mainView: {
         marginTop: 20
+    },
+
+    searchBar: {
+        marginTop: 20,
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: whiteColor,
+        borderRadius: 10,
+    },
+
+    searchBarInput: {
+        color: whiteColor,
     }
 });
 
