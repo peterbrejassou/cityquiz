@@ -278,10 +278,6 @@ export const jouerStyle = StyleSheet.create({
         borderWidth: 1,
         borderColor: whiteColor,
         borderRadius: 10,
-    },
-
-    searchBarInput: {
-        color: whiteColor,
     }
 });
 
@@ -290,7 +286,8 @@ export const cardNiveauStyle = StyleSheet.create({
         backgroundColor: greenColor,
         marginLeft: 15,
         marginRight: 15,
-        marginTop: 20,
+        marginTop: 10,
+        marginBottom: 10,
         borderRadius: 10,
         padding: 20,
     },

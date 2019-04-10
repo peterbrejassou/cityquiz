@@ -73,9 +73,12 @@ class ParametresScreen extends React.Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={parametresStyle.thirdView} onPress={() => this.setState({ popupDisplayed: true })}>
-                    <Text style={parametresStyle.deleteCompte}>Supprimer le compte</Text>
-                </TouchableOpacity>
+                <View style={parametresStyle.thirdView}>
+                    <TouchableOpacity onPress={() => this.setState({ popupDisplayed: true })}>
+                        <Text style={parametresStyle.deleteCompte}>Supprimer le compte</Text>
+                    </TouchableOpacity>
+                </View>
+                
 
 
                 {this.state.popupDisplayed && ( 

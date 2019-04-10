@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { appStyle, jouerStyle } from '../../styles/styles';
 import HeaderCoins from '../Header/HeaderCoins';
@@ -10,16 +10,20 @@ class JouerScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            search: ''
+            search: '',
+            niveauItems: null
         }
     }
 
-    render() {
-        // Parcours de la liste des niveaux puis création d'un CardNiveau pour chacun
+    // Apres le montage du component on récupère les niveaux
+    componentDidMount(){
         var niveauItems = this.props.niveaux.map((item) => {
             return <CardNiveau key={item.id} niveau={item} navigation={this.props.navigation} />;
         });
-
+        this.setState({niveauItems});
+    }
+    
+    render() {
         return (
             <View style={[appStyle.body, appStyle.padding]}>
                 <HeaderCoins title="Jouer" navigation={this.props.navigation} />
@@ -29,11 +33,18 @@ class JouerScreen extends React.Component {
                     onChangeText={(search) => this.setState({ search })} 
                     value={this.state.search}
                     containerStyle={jouerStyle.searchBar}
-                    placeholderTextColor='#bdbdbd'
-                    inputStyle={jouerStyle.searchBarInput} 
+                    searchIcon={{color: '#fff'}}
+                    cancelIcon={{ color: '#fff'}}
+                    placeholderTextColor='#8e8e8e'
+                    inputStyle={{color: '#fff'}} 
                 />
                 <ScrollView style={jouerStyle.mainView} showsVerticalScrollIndicator={false}>
-                    {niveauItems}
+                    {this.state.search === '' ? this.state.niveauItems 
+                    : this.props.niveaux.map((item) => {
+                        if (item.nom.includes(this.state.search)){
+                            return <CardNiveau key={item.id} niveau={item} navigation={this.props.navigation} />;
+                        }
+                    })}
                 </ScrollView>
             </View>
         );
