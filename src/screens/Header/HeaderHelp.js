@@ -36,7 +36,7 @@ export default class HeaderHelp extends React.Component {
                         </TouchableOpacity>
                         <View style={helpScreenStyle.viewContent}>
                             <Text style={helpScreenStyle.title}>Règles de publication</Text>
-                            <Text style={helpScreenStyle.content}>Lorem ipsum</Text>
+                            <Text style={helpScreenStyle.content}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam porta sollicitudin. Donec malesuada tortor id tortor dictum auctor id nec urna. Phasellus tincidunt, sem quis mollis iaculis, dui felis volutpat erat, ut commodo quam enim nec sem. Donec vitae mi finibus, convallis risus condimentum, aliquam velit. Donec euismod nunc erat, eget consectetur est ultricies luctus. Aenean non dolor consectetur, placerat tellus in, semper ex. Vivamus rutrum in lectus quis congue. Integer nec ullamcorper nibh. Aliquam at ligula in odio feugiat aliquet. Nunc nec mi dui.</Text>
                         </View>
                     </View>
                 : null}
