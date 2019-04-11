@@ -1004,3 +1004,42 @@ export const forgotPasswordStyle = StyleSheet.create({
         paddingBottom: 60
     }
 });
+
+
+export const badgeStyle = StyleSheet.create({
+    mainView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30
+    },
+
+    leftView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    image: {
+        width: 90,
+        height: 90
+    },
+
+    rightView: {
+        flex: 2,
+        justifyContent: 'space-evenly',
+        height: 90,
+        marginLeft: 10
+    },
+
+    title: {
+        color: whiteColor,
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 20
+    },
+
+    text: {
+        fontSize: 13,
+        color: whiteColor
+    }
+});

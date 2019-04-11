@@ -15,7 +15,8 @@ class LoginScreen extends React.Component {
             usernameInput: null,
             passwordInput: null,
             emptyLogs: false,
-            badLogs: false
+            badLogs: false,
+            passwordHidden : true
         }
 
         // Pour la 1e connexion, initialisation de la liste des utilisateurs
@@ -91,7 +92,7 @@ class LoginScreen extends React.Component {
                         <Text style={[appStyle.customFont, loginStyle.inputTitles]}>Nom d'utilisateur</Text>
                         <TextInput autoCapitalize="none" style={[appStyle.customFont, inputStyle.input]} onChangeText={(usernameInput) => this.setState({ usernameInput })} onSubmitEditing={() => { this.passwordTextInput.focus(); }} />
                         <Text style={[appStyle.customFont, loginStyle.inputTitles, loginStyle.secondInput]}>Mot de passe</Text>
-                        <TextInput style={[appStyle.customFont, inputStyle.input]} autoCapitalize="none" secureTextEntry={true} onChangeText={(passwordInput) => this.setState({ passwordInput })} ref={(input) => { this.passwordTextInput = input; }} onSubmitEditing={() => this._checkLogin()}  />
+                        <TextInput style={[appStyle.customFont, inputStyle.input]} autoCapitalize="none" secureTextEntry={this.state.passwordHidden} onChangeText={(passwordInput) => this.setState({ passwordInput })} ref={(input) => { this.passwordTextInput = input; }} onSubmitEditing={() => this._checkLogin()}  />
                         {<TouchableOpacity onPress={() => this.props.navigation.push('ForgotPassword')}>
                             <Text style={loginStyle.forgetPwd}>Mot de passe oublié ?</Text>
                         </TouchableOpacity>}

@@ -21,7 +21,7 @@ export const niveauData = [
                 ],
                 bonneReponse: 0,
                 indice: "Il est situé en Loire Atlantique et est classé monument historique depuis 1840. C’est aujourd’hui un musée d’histoire.",
-                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis.",
+                explication: "Le château des ducs de Bretagne est un château défensif et de plaisance situé à Nantes, dans le département de la Loire-Atlantique en France. Classé monument historique depuis 1840, il a principalement été construit au XVe siècle mais il comprend aussi des éléments datant du XIVe au XVIIIe siècle.",
                 valeur: 20
             },
             {
@@ -36,7 +36,7 @@ export const niveauData = [
                 ],
                 bonneReponse: 2,
                 indice: "Né en 1961 à Auxerre, c'est un artiste et plasticien français. Il vit et travaille à Paris",
-                explication: "Integer varius luctus eros, sed pharetra eros dapibus in. Nullam hendrerit velit dui, efficitur ultrices nunc commodo vel. Nunc vitae arcu elementum, ornare elit eu, cursus libero. Duis vitae sagittis massa. Nullam aliquet interdum mauris eu eleifend. Pellentesque a bibendum orci, facilisis ultricies justo. Maecenas eu suscipit felis, cursus mattis lacus. In vestibulum, ipsum in dignissim hendrerit, nulla magna posuere purus, nec lobortis enim dui eu tortor. Phasellus lacinia placerat malesuada. Aenean id tempus mauris. Nullam suscipit malesuada purus, convallis feugiat turpis.",
+                explication: "Philippe Ramette est né en 1961 à Auxerre, il vit et travaille actuellement à Paris. La sculpture est son point de départ et le mène à une réflexion qui lui permet de se projeter au delà du réel tel que nous le concevons. Ses sculptures servent ensuite de matière à ses photographies. Sans montages et sans retouches, seulement à l'aide de la sculpture, il se met en scène dans des situations improbables et absurdes. Dans ces images, il défie la gravité, la rationalité pour réparer les insuffisances et les limites de l'être humain.",
                 valeur: 20
             },
             {
