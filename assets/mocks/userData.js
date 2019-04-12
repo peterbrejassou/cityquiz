@@ -1,9 +1,9 @@
 export const userData = [
     {
         id: 1,
-        username: "a",
+        username: "johndoe",
         email: "johndoe@email.com",
-        password: "a",
+        password: "johndoe",
         nom: "Doe",
         prenom: "John",
         photo: require("../img/users/john_doe.jpg"),

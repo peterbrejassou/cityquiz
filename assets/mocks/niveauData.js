@@ -74,7 +74,7 @@ export const niveauData = [
                     "La Basilique du Sacré Coeur",
                     "La Cascade des Buttes Chaumont"
                 ],
-                bonneReponse: 1,
+                bonneReponse: 0,
                 indice: "Lisez-bien la question, chaque mot compte...",
                 explication: "Point naturel exclut le magasin H&M, la basilique du sacré-coeur et la cascade des Buttes Chaumont. Le cimetière du Calvaire qui jouxte l'Eglise St Pierre de Montmartre culmine à 131 m, mais la rue du Télégraphe est à 128,5 m.",
                 valeur: 20
@@ -129,7 +129,7 @@ export const niveauData = [
                     "La fête des lumières",
                     "Le carnaval"
                 ],
-                bonneReponse: 0,
+                bonneReponse: 2,
                 indice: "L'image en elle même est un indice.",
                 explication: "La Fête des Lumières s'appuie sur la fête religieuse dite fête du 8 décembre, fête de l'immaculée conception, Illuminations ou encore fête de la Vierge Marie. C'est devenu une manifestation populaire, initiée par la ville de Lyon en 1989, qui se tient chaque année pendant quatre jours autour du 8 décembre, ",
                 valeur: 20
@@ -146,8 +146,8 @@ export const niveauData = [
         questions: [
             {
                 numero: 1,
-                intitule: "Quelle est la situation de Bordeaux ?",
-                image: require(imgPath + "fete-lumieres.jpg"),
+                intitule: "Quelle est la situation géographique de Bordeaux ?",
+                image: require(imgPath + "bordeaux.jpg"),
                 reponses: [
                     "Au bord d'un fleuve côtier",
                     "Au bord d'un estuaire",
@@ -172,7 +172,7 @@ export const niveauData = [
             {
                 numero: 1,
                 intitule: "De quel département Marseille est-elle le chef-lieu ?",
-                image: require(imgPath + "fete-lumieres.jpg"),
+                image: require(imgPath + "marseille.jpg"),
                 reponses: [
                     "Bouches-du-Rhône",
                     "Haute-Alpes",
